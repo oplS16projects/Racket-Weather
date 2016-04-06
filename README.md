@@ -43,7 +43,7 @@ It will work.
 Yep, we have permission as seen in this [FP3 pull request.](https://github.com/oplS16projects/FP3/pull/12)
 
 ### JT Shepple @JohnShep
-will write the....
+I will handle creating an interface to display a map with points at a few specific locations. This will be used to show the places we have data for and we will be able to click on a location to see the 7 day forcast. For the 7 day forcast I will be working along with Huy to make the forcast along with a line graph of the data.
 
 ### Huy Huynh @HuyH0114
 I will be tasked with creating the plotted line graphs of the weather temperatures and also work with JT Shepple on the 5-10 day weather forecast page. The forecast page will show the highs, lows, and precipitation % for the selected city, and beneath the forecast will be the plotted line graphs that I will make for each city and their 5-10 day weather forecast. 
