@@ -7,6 +7,7 @@ Our project's goal is to take weather data from  [OpenWeatherMap](http://openwea
 We will use the various APIs and Racket libraries that we explored in FP1 and FP2. The weather API is called  [OpenWeatherMap](http://openweathermap.org/). 
 
 The various Racket libraries are as follows:
+
 1. [net/url](https://docs.racket-lang.org/net/url.html)
 2. [json](https://docs.racket-lang.org/json/)
 3. [racket turtle](https://docs.racket-lang.org/racket_turtle/index.html)
