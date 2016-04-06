@@ -20,7 +20,7 @@ We will be using Weather data from [OpenWeatherMap](http://openweathermap.org/).
 ### Deliverable and Demonstration
 Huy and JT will create two separate visualizations that will use the data that Jason's weather program generates. We are planning for the visualizations to create a plotted graph that will have the highs and lows of each day for the last 7 days. In addition, we will create a map of Massachusetts and have five cities of our choosing plotted with temperatures for each one. We then plan to have the user be able to click on one of the five cities and bring up a 7 day weather forecast of the selected city with the plotted graph below displaying the weather conditions.
 
-Here is an example of what we are planning on doing for the forecast page: ![Alt Text](https://github.com/oplS16projects/Racket-Weather/blob/master/Example.PNG)
+Here is an example of what we are planning on doing for the forecast page: ![Alt Text](https://github.com/oplS16projects/Racket-Weather/blob/master/Example.png)
 
 The program will be interactive, as you will be able to select on of the five cities that we gather data for. Also, it will update the data whenever the user clicks on a city, so the data will always be updated.
 
@@ -28,7 +28,7 @@ The program will be interactive, as you will be able to select on of the five ci
 If a we can get JSON data, and plot it on a graph, we're happy. ツ
 
 ## Architecture Diagram
-![Alt Text](https://github.com/oplS16projects/Racket-Weather/blob/master/Diagram.PNG)
+![Alt Text](https://github.com/oplS16projects/Racket-Weather/blob/master/Diagram.png)
 
 This diagram shows all the pieces to our project. At the top, you have Jason's weather data program which will generate JSON data. JT's map program will generate a map listing the five cities that have weather visualizations. Clicking on any of the five cities will launch both JT's and Huy's visualization programs, which will pull in the JSON data that Jason generated in his program.
 
