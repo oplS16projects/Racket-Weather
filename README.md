@@ -28,7 +28,9 @@ The program will be interactive, as you will be able to select on of the five ci
 If a we can get JSON data, and plot it on a graph, we're happy. ツ
 
 ## Architecture Diagram
-![Alt Text](https://github.com/oplS16projects/Racket-Weather/blob/master/Diagram.png)
+<p align="center">
+	<img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Diagram.png">
+<p>
 
 This diagram shows all the pieces to our project. At the top, you have Jason's weather data program which will generate JSON data. JT's map program will generate a map listing the five cities that have weather visualizations. Clicking on any of the five cities will launch both JT's and Huy's visualization programs, which will pull in the JSON data that Jason generated in his program.
 
