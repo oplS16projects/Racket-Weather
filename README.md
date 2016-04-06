@@ -18,7 +18,7 @@ We will be using Weather data from [OpenWeatherMap](http://openweathermap.org/).
 
 ### Deliverable and Demonstration
 There will be some sort of visualization (Map, Graph, Chart etc) in two separate programs that Huy and JT will create. These programs will utilize Jason's Racket program which will gather the data.
-We were planning for vizualizations to create a plotted graph that will have information of the highs and lows of each day or every few days. In addition, mimic a live map of Massachusetts and have five cities of our choosing plotted with temperatures for each one. We then plan to have the user be able to click on one of the five cities and bring up a 7 day weather forecast of the selected city with the plotted graph below displaying the weather conditions. 
+We were planning for vizualizations to create a plotted graph that will have information of the highs and lows of each day or every few days. In addition, mimic a live map of Massachusetts and have five cities of our choosing plotted with temperatures for each one. We then plan to have the user be able to click on one of the five cities and bring up a 7 day weather forecast of the selected city with the plotted graph below displaying the weather conditions. Basically here is an example of what we are planning on doing for the forecast page. [!Alt Text](https://github.com/oplS16projects/Racket-Weather/blob/master/Example.PNG)
 
 ### Evaluation of Results
 If a we can get JSON data, and plot it on a map, we're happy.
