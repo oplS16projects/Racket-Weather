@@ -29,10 +29,10 @@ TODO at some point.
 ## Schedule
 
 ### First Milestone (Fri Apr 15)
-Something
+We plan on having data pulled from the Open Weather Map and potentially the map with one or two city plots completed. In addition, two of the seven 7-day forecast line graphs should be ready and finished. 
 
 ### Second Milestone (Fri Apr 22)
-More of Something
+More line graphs and city plots for the map and forecast page should be finished. 5/7 line plot graphs should be finished and 3/5 the city plots should be finished by this point for the map as well. JT and Huy should begin on working on the forecast page/visualization at this point. 
 
 ### Final Presentation (last week of semester)
 It will work.
