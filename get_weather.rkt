@@ -1,6 +1,6 @@
 #lang racket
 
-(require net/url json)
+(require net/url json 2htdp/batch-io)
 
 #|
 URLs to the libraries I'm using:
@@ -76,19 +76,55 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=i
 |#
 
 ;; Now we can use this URL string to get weather data!
+
+;; Let's get each cities' weather and save them to a file with the citie's name + .json
+
+;; 1) Boston - get JSON data
 (define weather_data (string->url get_weather_boston))
 (define get_data (get-pure-port weather_data))
 (define weather_response (port->string get_data))
 (close-input-port get_data)
 
-;; Convert geo_response to a JSON object, just like before.
-(define weather_obj (string->jsexpr weather_response))
-(define weather_string (jsexpr->bytes weather_obj))
+;; This will write the weather response JSON to a file named "boston.json",
+;; a JSON file that Huy and JT will be able to use in their visualation programs.
+;; Uses this library: https://docs.racket-lang.org/teachpack/2htdpbatch-io.html
+(write-file "JSON/boston.json" weather_response)
 
-#|
-Finally, we should have a JSON object with a bunch of weather data
-for our current location!
+;; 2) Lawerence - get JSON data
+(set! weather_data (string->url get_weather_lawerence))
+(set! get_data (get-pure-port weather_data))
+(set! weather_response (port->string get_data))
+(close-input-port get_data)
 
-Let's dump this to a file and be done.
-|#
+;; Lawerence - output JSON to file.
+(write-file "JSON/lawerence.json" weather_response)
 
+;; 3) Lowell - get JSON data
+(set! weather_data (string->url get_weather_lowell))
+(set! get_data (get-pure-port weather_data))
+(set! weather_response (port->string get_data))
+(close-input-port get_data)
+
+;; Lowell - output JSON to file.
+(write-file "JSON/lowell.json" weather_response)
+
+;; 4) Worchester - get JSON data
+(set! weather_data (string->url get_weather_worchester))
+(set! get_data (get-pure-port weather_data))
+(set! weather_response (port->string get_data))
+(close-input-port get_data)
+
+;; Worchester - output JSON to file.
+(write-file "JSON/worchester.json" weather_response)
+
+
+;; 5) Manchester - get JSON data
+(set! weather_data (string->url get_weather_manchester))
+(set! get_data (get-pure-port weather_data))
+(set! weather_response (port->string get_data))
+(close-input-port get_data)
+
+;; Manchester - output JSON to file.
+(write-file "JSON/manchester.json" weather_response)
+
+;; And we're done! All the weather data is saved nicely in JSON format!
