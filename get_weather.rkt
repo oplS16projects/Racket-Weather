@@ -1,5 +1,4 @@
 #lang racket
-
 (require net/url json 2htdp/batch-io)
 
 #|
@@ -7,59 +6,48 @@ URLs to the libraries I'm using:
 
 net/url (making requests): https://docs.racket-lang.org/net/url.html
 JSON (to parse JSON): http://docs.racket-lang.org/json/index.html
+batch-io (files): https://docs.racket-lang.org/teachpack/2htdpbatch-io.html
 
 Using the following site for API requests for weather data:
 http://openweathermap.org
 
-API call is here:
-api.openweathermap.org/data/2.5/weather?lat=LAT_HERE&lon=LONG_HERE
-
-Basically, I'm messing around with REST API requests in Racket.
+Basically making REST API requests in Racket.
 
 We will grab weather data for five cities:
--> Boston, MA
--> Lawerence, MA
--> Lowell, MA
--> Worcester, MA
--> Manchester, NH
-
-Finally, ping openweathermap.org for weather data and display that data.
-
-|#
-
-#|
+-> Boston, MA USA
+-> Lawerence, MA USA
+-> Lowell, MA USA
+-> Worcester, MA USA   -> IMPORTANT, ADD US
+-> Manchester, NH USA  -> IMPORTANT, ADD US
 
 API calls:
 
-http://api.openweathermap.org/data/2.5/weather?q={city name}
+http://api.openweathermap.org/data/2.5/weather?q={city name},{Country code}&mode={MODE}&units={UNITS}&cnt={NUMBER OF DAYS}&appid={API KEY}
 
-    Boston: http://api.openweathermap.org/data/2.5/weather?q=Boston&appid=4da17a76c93f99b0c2d1f87923d14c72
- Lawerence: http://api.openweathermap.org/data/2.5/weather?q=Lawerence
-    Lowell: http://api.openweathermap.org/data/2.5/weather?q=Lowell
-Worchester: http://api.openweathermap.org/data/2.5/weather?q=Worchester
-Manchester: http://api.openweathermap.org/data/2.5/weather?q=Manchester
-
-Testing
+    Boston: http://api.openweathermap.org/data/2.5/weather?q=Boston,US
+ Lawerence: http://api.openweathermap.org/data/2.5/weather?q=Lawerence,US
+    Lowell: http://api.openweathermap.org/data/2.5/weather?q=Lowell,US
+Worchester: http://api.openweathermap.org/data/2.5/weather?q=Worchester,US
+Manchester: http://api.openweathermap.org/data/2.5/weather?q=Manchester,US
 
 Change {CITY} to the City name and then you will get:
 JSON data
 Units in Imperial (F, MPH, etc)
 10 Day Forecast data
 API ID from my free account on OpenWeatherMap.
-http://api.openweathermap.org/data/2.5/forecast/daily?q={CITY}&mode=json&units=imperial&cnt=10&appid=4da17a76c93f99b0c2d1f87923d14c72
 
-Working example for London:
-http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=imperial&cnt=10&appid=4da17a76c93f99b0c2d1f87923d14c72
-
+Working example for London, UK:
+http://api.openweathermap.org/data/2.5/forecast/daily?q=London,GB&mode=json&units=imperial&cnt=10&appid=4da17a76c93f99b0c2d1f87923d14c72
 |#
 
-;; Create the API string
-(define boston "Boston")
-(define lawerence "Lawerence")
-(define lowell "Lowell")
-(define worchester "Worchester")
-(define manchester "Manchester")
+;; Cities
+(define boston "Boston,US")
+(define lawerence "Lawerence,US")
+(define lowell "Lowell,US")
+(define worchester "Worchester,US")
+(define manchester "Manchester,US")
 
+;; Create the API strings
 (define open_weather "http://api.openweathermap.org/data/2.5/forecast/daily?q=")
 (define options "&mode=json&units=imperial&cnt=10")
 (define api_key "&appid=4da17a76c93f99b0c2d1f87923d14c72")
@@ -69,14 +57,13 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=i
 (define get_weather_lowell (string-append open_weather lowell options api_key))
 (define get_weather_manchester (string-append open_weather manchester options api_key))
 
-;; The API string could look like this for example:
 #|
+The API string could look like this for example:
 > get_weather_boston
 "http://api.openweathermap.org/data/2.5/forecast/daily?q=Boston&mode=json&units=imperial&cnt=10&appid=4da17a76c93f99b0c2d1f87923d14c72"
 |#
 
 ;; Now we can use this URL string to get weather data!
-
 ;; Let's get each cities' weather and save them to a file with the citie's name + .json
 
 ;; 1) Boston - get JSON data
@@ -85,9 +72,9 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=i
 (define weather_response (port->string get_data))
 (close-input-port get_data)
 
+;; Boston - output JSON to a file.
 ;; This will write the weather response JSON to a file named "boston.json",
 ;; a JSON file that Huy and JT will be able to use in their visualation programs.
-;; Uses this library: https://docs.racket-lang.org/teachpack/2htdpbatch-io.html
 (write-file "JSON/boston.json" weather_response)
 
 ;; 2) Lawerence - get JSON data
@@ -96,7 +83,7 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=i
 (set! weather_response (port->string get_data))
 (close-input-port get_data)
 
-;; Lawerence - output JSON to file.
+;; Lawerence - output JSON to a file.
 (write-file "JSON/lawerence.json" weather_response)
 
 ;; 3) Lowell - get JSON data
@@ -105,7 +92,7 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=i
 (set! weather_response (port->string get_data))
 (close-input-port get_data)
 
-;; Lowell - output JSON to file.
+;; Lowell - output JSON to a file.
 (write-file "JSON/lowell.json" weather_response)
 
 ;; 4) Worchester - get JSON data
@@ -114,9 +101,8 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=i
 (set! weather_response (port->string get_data))
 (close-input-port get_data)
 
-;; Worchester - output JSON to file.
+;; Worchester - output JSON to a file.
 (write-file "JSON/worchester.json" weather_response)
-
 
 ;; 5) Manchester - get JSON data
 (set! weather_data (string->url get_weather_manchester))
@@ -124,7 +110,7 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=i
 (set! weather_response (port->string get_data))
 (close-input-port get_data)
 
-;; Manchester - output JSON to file.
+;; Manchester - output JSON to a file.
 (write-file "JSON/manchester.json" weather_response)
 
 ;; And we're done! All the weather data is saved nicely in JSON format!
