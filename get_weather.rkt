@@ -33,90 +33,62 @@ API calls:
 
 http://api.openweathermap.org/data/2.5/weather?q={city name}
 
-Boston:
-Lawerence:
-Lowell:
-Worchester:
-Manchester:
+    Boston: http://api.openweathermap.org/data/2.5/weather?q=Boston&appid=4da17a76c93f99b0c2d1f87923d14c72
+ Lawerence: http://api.openweathermap.org/data/2.5/weather?q=Lawerence
+    Lowell: http://api.openweathermap.org/data/2.5/weather?q=Lowell
+Worchester: http://api.openweathermap.org/data/2.5/weather?q=Worchester
+Manchester: http://api.openweathermap.org/data/2.5/weather?q=Manchester
+
+Testing
+
+Change {CITY} to the City name and then you will get:
+JSON data
+Units in Imperial (F, MPH, etc)
+10 Day Forecast data
+API ID from my free account on OpenWeatherMap.
+http://api.openweathermap.org/data/2.5/forecast/daily?q={CITY}&mode=json&units=imperial&cnt=10&appid=4da17a76c93f99b0c2d1f87923d14c72
+
+Working example for London:
+http://api.openweathermap.org/data/2.5/forecast/daily?q=London&mode=json&units=imperial&cnt=10&appid=4da17a76c93f99b0c2d1f87923d14c72
 
 |#
 
 ;; Create the API string
-(define open_weather "http://api.openweathermap.org/data/2.5/weather?lat=")
-(define lat_str (number->string user_lat))
-(define long_str (number->string user_long))
-(define api_key "&appid=44db6a862fba0b067b1930da0d769e98")
-(define get_weather (string-append open_weather lat_str "&lon=" long_str api_key))
+(define boston "Boston")
+(define lawerence "Lawerence")
+(define lowell "Lowell")
+(define worchester "Worchester")
+(define manchester "Manchester")
+
+(define open_weather "http://api.openweathermap.org/data/2.5/forecast/daily?q=")
+(define options "&mode=json&units=imperial&cnt=10")
+(define api_key "&appid=4da17a76c93f99b0c2d1f87923d14c72")
+(define get_weather_boston (string-append open_weather boston options api_key))
+(define get_weather_lawerence (string-append open_weather lawerence options api_key))
+(define get_weather_worchester (string-append open_weather worchester options api_key))
+(define get_weather_lowell (string-append open_weather lowell options api_key))
+(define get_weather_manchester (string-append open_weather manchester options api_key))
 
 ;; The API string could look like this for example:
 #|
-> get_weather
-"http://api.openweathermap.org/data/2.5/weather?lat=42.6523&lon=-71.3506&appid=44db6a862fba0b067b1930da0d769e98"
+> get_weather_boston
+"http://api.openweathermap.org/data/2.5/forecast/daily?q=Boston&mode=json&units=imperial&cnt=10&appid=4da17a76c93f99b0c2d1f87923d14c72"
 |#
 
 ;; Now we can use this URL string to get weather data!
-(define weather_data (string->url get_weather))
+(define weather_data (string->url get_weather_boston))
 (define get_data (get-pure-port weather_data))
 (define weather_response (port->string get_data))
 (close-input-port get_data)
 
 ;; Convert geo_response to a JSON object, just like before.
 (define weather_obj (string->jsexpr weather_response))
+(define weather_string (jsexpr->bytes weather_obj))
 
 #|
 Finally, we should have a JSON object with a bunch of weather data
 for our current location!
 
-The object might look something like this:
-> weather_obj
-'#hasheq((id . 4942618)
-         (coord . #hasheq((lon . -71.32) (lat . 42.63)))
-         (weather . '(#hasheq((id . 500) (description . "light rain") (icon . "10d") (main . "Rain"))))
-         (wind . #hasheq((speed . 1.43) (deg . 226.503)))
-         (rain . #hasheq((3h . 0.595)))
-         (clouds . #hasheq((all . 92)))
-         (main . #hasheq((temp . 290.174) (pressure . 1016.88) (humidity . 88) (temp_min . 290.174) (temp_max . 290.174) (sea_level . 1026.91) (grnd_level . 1016.88)))
-         (sys . #hasheq((country . "US") (sunrise . 1457607817) (sunset . 1457650042) (message . 0.0132)))
-         (cod . 200)
-         (name . "Lowell")
-         (dt . 1457638592)
-         (base . "cmc stations"))
+Let's dump this to a file and be done.
 |#
 
-#|
-   So for the final output of this program, let's display some misc weather data for the current location!
-   Let's make the example output look like the following:
-
-***********************************************************************************************************
-   CURRENT CITY: city_here
-   Lat/lon: longitude_here / latitude_here
-   Description: description_here
-   Wind Speed: wind_speed_here
-   etc, maybe a few other things that we can get.
-
-***********************************************************************************************************
-
-|#
-
-;; Strings here.
-(define city_name (hash-ref weather_obj 'name))               ;; Example - "Lowell"
-(define coord_obj (hash-ref weather_obj 'coord))              ;; Should get the coord hashtable inside the weather hashtable.
-(define coord_lat (hash-ref coord_obj 'lat))                  ;; Example - "42.63"
-(define coord_long (hash-ref coord_obj 'lon))                 ;; Example - "-71.32"
-(define cond_obj (hash-ref weather_obj 'weather))             ;; Should get the conditions obj inside the weather obj.
-(define conditions (hash-ref (car cond_obj) 'description))    ;; Example - "light rain"
-(define wind_obj (hash-ref weather_obj 'wind))                ;; Should get the wind obj inside the weather obj.
-(define wind_speed (hash-ref wind_obj 'speed))                ;; Example - "1.43"
-
-;; Print out the strings.
-(printf "CURRENT CITY: ~a\n" city_name)
-(printf "Lat/Long: ~a / ~a\n" coord_lat coord_long)
-(printf "Weather conditions: ~a\n" conditions)
-(printf "Wind speed: ~a MPH\n" wind_speed)
-
-;; Debug info for future reference.
-;(printf "API URL for IP address lookup: https://api.ipify.org?format=json\n")
-;(printf "API URL for Lat/Long lookup via IP: ~a\n" get_loc)
-;(printf "API URL for weather lookup: ~a\n" get_weather)
-
-;; AND we're done!
