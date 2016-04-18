@@ -39,8 +39,8 @@ This diagram shows all the pieces to our project. At the top, you have Jason's w
 ### First Milestone (Fri Apr 15)
 We plan on having data pulled from the Open Weather Map and potentially the map with one or two city plots completed. In addition, two of the seven 7-day forecast line graphs should be ready and finished.
 
-#### Update for Milestone I: 
-Jason was able to complete the weather data gatherer, and has all the required JSON data for Huy and JT to use. Huy was able to make several graphs and get started on his visualation. JT also has part of the map working, but ran into issues trying to get the image / pins to display. Huy and JT will work on completing their portions in the next week and Jason will work on simplifying his code / improving it.
+#### Update for Milestone I:
+Jason was able to complete the weather data gatherer, and has all the required JSON data for Huy and JT to use. Huy was able to make several graphs and get started on his visualization. JT also has part of the map working, but ran into issues trying to get the image / pins to display. Huy and JT will work on completing their portions in the next week and Jason will work on simplifying his code / improving it.
 
 ### Second Milestone (Fri Apr 22)
 More line graphs and city plots for the map and forecast page should be finished. 5/7 line plot graphs should be finished and 3/5 the city plots should be finished by this point for the map as well. JT and Huy should begin on working on the forecast page/visualization at this point.
