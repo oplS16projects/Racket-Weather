@@ -41,26 +41,26 @@ http://api.openweathermap.org/data/2.5/forecast/daily?q=London,GB&mode=json&unit
 
 ;; Cities names for the API strings
 (define boston "Boston,US")
-(define lawerence "Lawerence,US")
+(define lawrence "Lawrence,US")
 (define lowell "Lowell,US")
-(define worchester "Worchester,US")
+(define worcester "Worcester,US")
 (define manchester "Manchester,US")
 
 ;; List of cities names for the recursive get weather function
-(define cities_list (list boston lawerence lowell worchester manchester))
+(define cities_list (list boston lawrence lowell worcester manchester))
 
 ;; Create the API strings
 (define open_weather "http://api.openweathermap.org/data/2.5/forecast/daily?q=")
 (define options "&mode=json&units=imperial&cnt=10")
 (define api_key "&appid=4da17a76c93f99b0c2d1f87923d14c72")
 (define get_boston (string-append open_weather boston options api_key))
-(define get_lawerence (string-append open_weather lawerence options api_key))
-(define get_worchester (string-append open_weather worchester options api_key))
+(define get_lawerence (string-append open_weather lawrence options api_key))
 (define get_lowell (string-append open_weather lowell options api_key))
+(define get_worcester (string-append open_weather worcester options api_key))
 (define get_manchester (string-append open_weather manchester options api_key))
 
 ;; List of API strings for the get weather function
-(define get_list (list get_boston get_lawerence get_worchester get_lowell get_manchester))
+(define get_list (list get_boston get_lawerence get_lowell get_worcester get_manchester))
 
 #|
 The API string could look like this for example:
