@@ -45,6 +45,9 @@ Jason was able to complete the weather data gatherer, and has all the required J
 ### Second Milestone (Fri Apr 22)
 More line graphs and city plots for the map and forecast page should be finished. 5/7 line plot graphs should be finished and 3/5 the city plots should be finished by this point for the map as well. JT and Huy should begin on working on the forecast page/visualization at this point.
 
+#### Update for Milestone II:
+Jason fixed some issues with the weather data program, and was able to make the code simplier by using procedures. Huy has visualizations working which make use of the JSON data that Jason's program generates. Huy and JT will get all of the visualizations working by Wednesday for us to present our work to the class. Jason will assist where needed as his program is working correctly, bar any bugs being discovered.
+
 ### Final Presentation (last week of semester)
 It will work. ✔
 
