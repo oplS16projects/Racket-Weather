@@ -58,7 +58,7 @@
               avg-lst
               (make_avg (cdr lst1) (cdr lst2) (append avg-lst (list (/ (+ (car lst1) (car lst2)) 2))))))
 
-;; Graph all the shit
+;; Graph all the graph
 (define (gen-graph lsts-of-cities name-of-city)
   (if (empty? lsts-of-cities)
       '()
