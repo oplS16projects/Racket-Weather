@@ -1,78 +1,120 @@
 #lang racket
-(require plot)
+(require plot json 2htdp/batch-io)
 
-(define boston-high-xs '( 1 2 3 4 5 6 7 8 9 10))
-(define boston-high-ys '( 52.54 46.47 50.09 52.02 50.18 49.6 58.01 48.47 44.29 53.69))
-(define boston-low-xs '( 1 2 3 4 5 6 7 8 9 10))
-(define boston-low-ys '( 46.47 42.13 38.01 43.77 37.72 38.79 46.45 45.57 37.96 39.22))
-(define boston-day-xs '(1 2 3 4 5 6 7 8 9 10))
-(define boston-day-ys '(49.505 44.3 44.05 47.895 43.95 44.195 42.23 47.02 41.125 46.455))
+;; City names
+(define boston "JSON/Boston,US.json")
+(define lawrence "JSON/Lawrence,US.json")
+(define lowell "JSON/Lowell,US.json")
+(define worchester "JSON/Worcester,US.json")
+(define manchester "JSON/Manchester,US.json")
 
-(define lawrence-high-xs '( 1 2 3 4 5 6 7 8 9 10))
-(define lawrence-high-ys '(81.77 78.24 79.74 69.51 75.09 72.1 66.54 71.53 74.48 75.76))
-(define lawrence-low-xs '( 1 2 3 4 5 6 7 8 9 10))
-(define lawrence-low-ys '(67.68 64.06 60.98 62.6 59 58.41 60.1 54.27 50.54 51.49))
-(define lawrence-average-xs '( 1 2 3 4 5 6 7 8 9 10))
-(define lawrence-average-ys '(74.725 71.15 70.36 66.055 67.045 65.255 63.32 62.9 62.51 63.625 ))
+;; List of city names
+(define list-of-json-files
+  (list boston lawrence lowell worchester manchester))
 
-=
-      
+;; Variables defined here
+(define json_file '())
+(define json_string '())
 
+(define list-n '())
+(define temp '())
 
-(list (plot (list (lines (map vector  boston-high-xs  boston-high-ys)
-                   #:color 'red
-                   #:label "High"
-                   )
-            (points (map vector  boston-high-xs  boston-high-ys)
-                   #:color 'red
-                   
-                   )
-            (lines (map vector boston-low-xs boston-low-ys)
-                   #:color 'blue
-                   #:label "Low"
-                   )
-             (points (map vector boston-low-xs boston-low-ys)
-                   #:color 'blue
-                  
-                   )
-             (lines (map vector boston-day-xs boston-day-ys)
-                   #:color 'black
-                   #:label "Average Temp"
-                   )
-             (points (map vector boston-day-xs boston-day-ys)
-                   #:color 'black
-                   ))
-   
-      #:x-label "Days"
-      #:y-label "Temperature in Fahrenheit"
-      #:title "Boston 10-Day Forecast Graph")
-      (plot (list (lines (map vector  lawrence-high-xs  lawrence-high-ys)
-                   #:color 'red
-                   #:label "High"
-                   )
-            (points (map vector  lawrence-high-xs  lawrence-high-ys)
-                   #:color 'red
-                   
-                   )
-            (lines (map vector lawrence-low-xs lawrence-low-ys)
-                   #:color 'blue
-                   #:label "Low"
-                   )
-             (points (map vector lawrence-low-xs lawrence-low-ys)
-                   #:color 'blue
-                  
-                   )
-             (lines (map vector lawrence-average-xs lawrence-average-ys)
-                   #:color 'black
-                   #:label "Average Temp"
-                   )
-             (points (map vector lawrence-average-xs lawrence-average-ys)
-                   #:color 'black
-                   ))
-   
-      #:x-label "Days"
-      #:y-label "Temperature in Fahrenheit"
-      #:title "Lawrence 10-Day Forecast Graph")
+(define city-x-coord '(1 2 3 4 5 6 7 8 9 10))
 
-      )
+;; list of min / max temps
+(define list_min '())
+(define list_max '())
 
+;; list of avg temps
+(define list_avg '())
+
+;; List of plot stuff
+(define list_plot '())
+
+;; functions defined here.
+
+;; Get min temps
+(define (make_min list_temps list_min)
+  (if (null? list_temps)
+      ;; Return the list of mins
+      list_min
+      (make_min (cdr list_temps) (cons (hash-ref (hash-ref (car list_temps) 'temp) 'min) list_min))
+  )
+)
+
+;; Get max temps
+(define (make_max list_temps list_max)
+  (if (null? list_temps)
+      ;; Return the list of mins
+      list_max
+      (make_max (cdr list_temps) (cons (hash-ref (hash-ref (car list_temps) 'temp) 'max) list_max))
+  )
+)
+
+;; Generate avg temps
+(define (make_avg lst1 lst2 avg-lst)
+          (if (and (null? lst1)
+                   (null? lst2))
+              avg-lst
+              (make_avg (cdr lst1) (cdr lst2) (append avg-lst (list (/ (+ (car lst1) (car lst2)) 2))))))
+
+;; Graph all the shit
+(define (gen-graph lsts-of-cities name-of-city)
+  (if (empty? lsts-of-cities)
+      '()
+      (begin
+        ;; Read file in
+        (set! json_file (read-file (car lsts-of-cities)))
+        
+        ;; Parse to string object
+        (set! json_string (string->jsexpr json_file))
+        
+        ;; Output JSON string
+        ;(display json_string)
+        
+        ;; Get min/max
+        (set! list-n (hash-ref json_string 'list))
+        (set! temp (hash-ref (car list-n) 'temp))
+
+        ;; list of min / max temps
+        (set! list_min (make_min list-n '()))
+        (set! list_max (make_max list-n '()))
+
+        ;; list of avg temps
+        (set! list_avg (make_avg list_max list_min '()))      
+        
+        (plot (list (lines (map vector  city-x-coord list_max)
+                           #:color 'red
+                           #:label "High"
+                           )
+                    (points (map vector  city-x-coord  list_max)
+                            #:color 'red
+                            
+                            )
+                    (lines (map vector city-x-coord list_min)
+                           #:color 'blue
+                           #:label "Low"
+                           )
+                    (points (map vector city-x-coord list_min)
+                            #:color 'blue
+                            
+                            )
+                    (lines (map vector city-x-coord list_avg)
+                           #:color 'black
+                           #:label "Average Temp"
+                           )
+                    (points (map vector city-x-coord list_avg)
+                            #:color 'black
+                            ))
+              
+              #:x-label "Days"
+              #:y-label "Temperature in Fahrenheit"
+              #:title (string-append name-of-city " 10-Day Forecast Graph")))
+))
+
+;; Generate the plots for all five cities
+(gen-graph list-of-json-files "Boston")                ;; Boston
+(gen-graph (cdr list-of-json-files) "Lawrence")        ;; Lawrence
+(gen-graph (cddr list-of-json-files) "Lowell")         ;; Lowell
+(gen-graph (cdddr list-of-json-files) "Worcester")     ;; Worcester
+(gen-graph (cddddr list-of-json-files) "Manchester")   ;; Manchester
