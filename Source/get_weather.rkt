@@ -1,6 +1,9 @@
 #lang racket
 (require net/url json 2htdp/batch-io)
 
+;; This will make it possible to import this file into the Racket Weather driver program.
+(provide (all-defined-out))
+
 #|
 URLs to the libraries I'm using:
 
@@ -75,14 +78,14 @@ The API string could look like this for example:
 (define weather_data "")
 (define get_data "")
 (define weather_response "")
-(define weather_done "Weather collection complete.\n")
+(define weather_done "Weather collection complete.\nCheck the JSON folder for updated weather data!\n")
 
 ;; We will use a recursive procedure called "get_weather"
 (define (get_weather _cities _api-strings)
   ;; If to detect end of lists.
   (if (null? _cities)
       ;; True case, done.
-      weather_done
+      (display weather_done)
 
       ;; False case, get JSON data
       (begin
@@ -100,7 +103,5 @@ The API string could look like this for example:
   )
 )
 
-;; Call the get_weather procedure
-(get_weather cities_list get_list)
-
-;; And we're done! All the weather data is saved nicely in JSON format!
+;; Now run get_weather to generate JSON files of weather data!
+;; Ex: (get_weather cities_list get_list)
