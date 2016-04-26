@@ -5,15 +5,15 @@
 (provide (all-defined-out))
 
 ;; City names
-(define boston "JSON/Boston,US.json")
-(define lawrence "JSON/Lawrence,US.json")
-(define lowell "JSON/Lowell,US.json")
-(define worchester "JSON/Worcester,US.json")
-(define manchester "JSON/Manchester,US.json")
+(define boston-json "JSON/Boston,US.json")
+(define lawrence-json "JSON/Lawrence,US.json")
+(define lowell-json "JSON/Lowell,US.json")
+(define worchester-json "JSON/Worcester,US.json")
+(define manchester-json "JSON/Manchester,US.json")
 
 ;; List of city names
 (define list-of-json-files
-  (list boston lawrence lowell worchester manchester))
+  (list boston-json lawrence-json lowell-json worchester-json manchester-json))
 
 ;; Variables defined here
 (define json_file '())
