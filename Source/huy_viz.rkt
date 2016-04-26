@@ -1,6 +1,9 @@
 #lang racket
 (require plot json 2htdp/batch-io)
 
+;; This will make it possible to import this file into the Racket Weather driver program.
+(provide (all-defined-out))
+
 ;; City names
 (define boston "JSON/Boston,US.json")
 (define lawrence "JSON/Lawrence,US.json")
@@ -111,10 +114,3 @@
               #:y-label "Temperature in Fahrenheit"
               #:title (string-append name-of-city " 10-Day Forecast Graph")))
 ))
-
-;; Generate the plots for all five cities
-(gen-graph list-of-json-files "Boston")                ;; Boston
-(gen-graph (cdr list-of-json-files) "Lawrence")        ;; Lawrence
-(gen-graph (cddr list-of-json-files) "Lowell")         ;; Lowell
-(gen-graph (cdddr list-of-json-files) "Worcester")     ;; Worcester
-(gen-graph (cddddr list-of-json-files) "Manchester")   ;; Manchester
