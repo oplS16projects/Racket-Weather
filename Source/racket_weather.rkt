@@ -1,6 +1,8 @@
 #lang racket
-
+(require plot)
 (require (file "get_weather.rkt"))
+(require (file "huy_viz.rkt"))
+
 
 ;; Call the get_weather procedure
 (get_weather cities_list get_list)
