@@ -10,7 +10,6 @@ URLs to the libraries I'm using:
 net/url (making requests): https://docs.racket-lang.org/net/url.html
 JSON (to parse JSON): http://docs.racket-lang.org/json/index.html
 batch-io (for saving files): https://docs.racket-lang.org/teachpack/2htdpbatch-io.html
-
 Using the following site for API requests for weather data: http://openweathermap.org
 
 Basically making REST API requests in Racket.
@@ -23,7 +22,6 @@ We will grab weather data for five cities:
 -> Manchester, NH USA  -> IMPORTANT, ADD US
 
 API calls:
-
 http://api.openweathermap.org/data/2.5/weather?q={city name},{Country code}&mode={MODE}&units={UNITS}&cnt={NUMBER OF DAYS}&appid={API KEY}
 
     Boston: http://api.openweathermap.org/data/2.5/weather?q=Boston,US
@@ -78,7 +76,7 @@ The API string could look like this for example:
 (define weather_data "")
 (define get_data "")
 (define weather_response "")
-(define weather_done "Weather collection complete.\nCheck the JSON folder for updated weather data!\n")
+(define weather_done "Weather collection complete.\nCheck the JSON folder for updated weather data!\n\n\n")
 
 ;; We will use a recursive procedure called "get_weather"
 (define (get_weather _cities _api-strings)
