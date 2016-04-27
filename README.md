@@ -37,20 +37,41 @@ Racket Libraries that we used include the following:
 4. [2htdp/batch-io](https://docs.racket-lang.org/teachpack/2htdpbatch-io.html)
 5. [2htdp/image](https://docs.racket-lang.org/teachpack/2htdpimage.html)
 
-We also used one external API, [the OpenWeatherMap API](http://openweathermap.org/api),
+We also used one external API, the [OpenWeatherMap API](http://openweathermap.org/api),
 to retrieve real weather data for several US cities.
 
 ##Favorite Scheme Expressions
 ####Jason Downing
-Weather Expression
+This code is from a recursive function which goes through and grabs weather data
+for five cities. The code is pretty cool because I use [net/url](https://docs.racket-lang.org/net/url.html)
+to grab the data off of the [OpenWeatherMap API](http://openweathermap.org/api), and I also
+use [2htdp/batch-io](https://docs.racket-lang.org/teachpack/2htdpbatch-io.html) to store the JSON
+data into multiple files with the cities name as the file name. This small chunk of code basically
+makes our entire project possible because without the JSON files that this code generates Huy and JT would have no data
+to use in their visualizations.
+
+```scheme
+      ;; False case, get JSON data
+      (begin
+        (set! weather_data (string->url (car _api-strings)))
+        (set! get_data (get-pure-port weather_data))
+        (set! weather_response (port->string get_data))
+        (close-input-port get_data)
+
+        ;; Write to file in folder "JSON", with name as "CITY_NAME_HERE.json"
+        (write-file (string-append "JSON/" (car _cities)  ".json") weather_response)
+
+        ;; Recursive call
+        (get_weather (cdr _cities) (cdr _api-strings))
+      )
 ```
-;; Stuff
-```
-####Huy Huynh 
-This is basically using the plot library and the plot procedure. What is interesting about this was that this plot is actually 
-just a list and it uses a mixture of the "lines" procedure and the "points" procedure. Having the plot as a list allowed me to 
+
+####Huy Huynh
+This is basically using the plot library and the plot procedure. What is interesting about this was that this plot is actually
+just a list and it uses a mixture of the "lines" procedure and the "points" procedure. Having the plot as a list allowed me to
 overlap the "lines" and "points" procedure into one display or graph. Each of the these procedure takes in two seperate lists where it
-has the x and y coordinates needed to plot the diagram. From there the "plot", "lines" and "points" procedure had specific traits that I was able to change such as the label name, color , the x and y labels, the dimenstions of the graph, and its title. This was my favorite because I found it interesting that the procedures in the plot library were not only procedures but also their own objects within those procedures, which were those specific traits that I was able to change. The code itself looks simple but it was interesting to see that there were so much background work that was done. For example for changing the title I was able to use another procedure called string-append and pass it a list and a string I wanted to append. I was able to do all of this inside the "plot" procedure's specific object that it has. 
+has the x and y coordinates needed to plot the diagram. From there the "plot", "lines" and "points" procedure had specific traits that I was able to change such as the label name, color , the x and y labels, the dimenstions of the graph, and its title. This was my favorite because I found it interesting that the procedures in the plot library were not only procedures but also their own objects within those procedures, which were those specific traits that I was able to change. The code itself looks simple but it was interesting to see that there were so much background work that was done. For example for changing the title I was able to use another procedure called string-append and pass it a list and a string I wanted to append. I was able to do all of this inside the "plot" procedure's specific object that it has.
+
 ```scheme
       (plot (list (lines (map vector  city-x-coord list_max)
                            #:color 'red
