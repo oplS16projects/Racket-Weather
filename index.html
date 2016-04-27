@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset='utf-8'>
+    <meta http-equiv="X-UA-Compatible" content="chrome=1">
+
+    <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <title>Racket-weather by oplS16projects</title>
+  </head>
+
+  <body>
+
+    <header>
+      <div class="container">
+        <h1>Racket-weather</h1>
+        <h2>Racket Weather, a project using Racket to visualize weather related data</h2>
+
+        <section id="downloads">
+          <a href="https://github.com/oplS16projects/Racket-Weather/zipball/master" class="btn">Download as .zip</a>
+          <a href="https://github.com/oplS16projects/Racket-Weather/tarball/master" class="btn">Download as .tar.gz</a>
+          <a href="https://github.com/oplS16projects/Racket-Weather" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
+        </section>
+      </div>
+    </header>
+
+    <div class="container">
+      <section id="main_content">
+        <h1>
+<a id="racket-weather-v10" class="anchor" href="#racket-weather-v10" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RACKET WEATHER V1.0</h1>
+
+<h2>
+<a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h2>
+
+<p>Jason Downing
+Huy Huynh
+JT Shepple</p>
+
+<h2>
+<a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
+
+<p>The general idea for our project is to mimic a 10-day weather forcast, where our program displays two type of visualizations.
+One of the visualiazation shows highs and lows with an image of the condition.
+The other viz is a line graph plotting the highs, lows, and average temperature of certain cities.
+The project is split into several parts. The first part retrieves real weather data into several JSON files and
+the second part creates two different visualizations from the retrieved data.</p>
+
+<h2>
+<a id="screenshot" class="anchor" href="#screenshot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshot</h2>
+
+<p>This was our inital concept and visualization of what we wanted to mimic:
+</p><p align="center">
+    <img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Example.png">
+</p><p></p>
+
+<p>This is example output of our final program:
+</p><p align="center">
+    <img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.PNG">
+</p><p></p>
+
+<h2>
+<a id="concepts-demonstrated" class="anchor" href="#concepts-demonstrated" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Concepts Demonstrated</h2>
+
+<ul>
+<li>
+<strong>File I/O</strong> was used to store the weather data in JSON format. It is also used in both JT and Huy's viz programs.</li>
+<li>
+<strong>Recursion</strong> was used to grab the min and max of values from the JSON file</li>
+</ul>
+
+<h2>
+<a id="external-technology-and-libraries" class="anchor" href="#external-technology-and-libraries" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>External Technology and Libraries</h2>
+
+<p>Racket Libraries that we used include the following:</p>
+
+<ol>
+<li><a href="https://docs.racket-lang.org/net/url.html">net/url</a></li>
+<li><a href="https://docs.racket-lang.org/json/">json</a></li>
+<li><a href="https://docs.racket-lang.org/plot/">plot</a></li>
+<li><a href="https://docs.racket-lang.org/teachpack/2htdpbatch-io.html">2htdp/batch-io</a></li>
+<li><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html">2htdp/image</a></li>
+</ol>
+
+<p>We also used one external API, <a href="http://openweathermap.org/api">the OpenWeatherMap API</a>,
+to retrieve real weather data for several US cities.</p>
+
+<h2>
+<a id="favorite-scheme-expressions" class="anchor" href="#favorite-scheme-expressions" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Favorite Scheme Expressions</h2>
+
+<h4>
+<a id="jason-downing" class="anchor" href="#jason-downing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Jason Downing</h4>
+
+<p>Weather Expression</p>
+
+<pre><code>;; Stuff
+</code></pre>
+
+<h4>
+<a id="huy-huynh" class="anchor" href="#huy-huynh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Huy Huynh</h4>
+
+<p>Magic Viz Expression</p>
+
+<pre><code>;; PUT CODE HERE
+</code></pre>
+
+<h3>
+<a id="jt-shepple" class="anchor" href="#jt-shepple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JT Shepple</h3>
+
+<p>Magic Viz Expression</p>
+
+<pre><code>;; PUT CODE HERE
+</code></pre>
+
+<h2>
+<a id="additional-remarks" class="anchor" href="#additional-remarks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional Remarks</h2>
+
+<p>This project is cool.</p>
+
+<h1>
+<a id="how-to-download-and-run" class="anchor" href="#how-to-download-and-run" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Download and Run</h1>
+
+<p>Download the zip, or git clone the repository from the following link:
+<a href="https://github.com/oplS16projects/Racket-Weather">Racket Weather</a></p>
+
+<p>To run, open "racket_weather.rkt" in DrRacket. It can be found the in the "Source"
+sub directory of the Git Repository. Once the file is open, click "Run" and the
+file will run "get_weather.rkt", "JT_viz.rkt", and "Huy_viz.rkt" files. The REPL
+will show the Visualations that are created based on the JSON data found in the
+JSON sub directory of the Source directory.</p>
+      </section>
+    </div>
+
+    
+  </body>
+</html>
