@@ -135,13 +135,3 @@
         (print_weather2 forecast_cond) ;print image
 )))
 
-
-
-;; Generate the list
-#|
-(gen-weather list-of-json-files "Boston")                ;; Boston
-(gen-weather (cdr list-of-json-files) "Lawrence")        ;; Lawrence
-(gen-weather (cddr list-of-json-files) "Lowell")         ;; Lowell
-(gen-weather (cdddr list-of-json-files) "Worcester")     ;; Worcester
-(gen-weather (cddddr list-of-json-files) "Manchester")   ;; Manchester
-|#
