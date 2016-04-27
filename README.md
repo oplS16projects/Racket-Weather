@@ -25,11 +25,8 @@ This is what we actually have outputted
 
 
 ##Concepts Demonstrated
-* **Data abstraction** is used to provide access to the elements of the RSS feed.
-* The objects in the OpenGL world are represented with **recursive data structures.**
-* **Symbolic language processing techniques** are used in the parser.
-*
- **Basic Recursion** was used to grab the min and max of values from the JSON file
+* **
+* **Recursion** was used to grab the min and max of values from the JSON file
 
 ##External Technology and Libraries
 Racket Libraries that we used include the following:
@@ -44,27 +41,32 @@ We also used one external API, [the OpenWeatherMap API](http://openweathermap.or
 to retrieve real weather data for several US cities.
 
 ##Favorite Scheme Expressions
-####Mark (a team member)
-Each team member should identify a favorite expression or procedure, written by them, and explain what it does. Why is it your favorite? What OPL philosophy does it embody?
-Remember code looks something like this:
-```scheme
-(map (lambda (x) (foldr compose functions)) data)
+####Jason Downing
+Weather Expression
 ```
-####Lillian (another team member)
-This expression reads in a regular expression and elegantly matches it against a pre-existing hashmap....
-```scheme
-(let* ((expr (convert-to-regexp (read-line my-in-port)))
-             (matches (flatten
-                       (hash-map *words*
-                                 (lambda (key value)
-                                   (if (regexp-match expr key) key '()))))))
-  matches)
+;; Stuff
+```
+####Huy Huynh
+Magic Viz Expression
+```
+;; PUT CODE HERE
+```
+
+###JT Shepple
+Magic Viz Expression
+```
+;; PUT CODE HERE
 ```
 
 ##Additional Remarks
-Anything else you want to say in your report. Can rename or remove this section.
+This project is cool.
 
 #How to Download and Run
-You may want to link to your latest release for easy downloading by people (such as Mark).
+Download the zip, or git clone the repository from the following link:
+[Racket Weather](https://github.com/oplS16projects/Racket-Weather)
 
-Include what file to run, what to do with that file, how to interact with the app when its running, etc.
+To run, open "racket_weather.rkt" in DrRacket. It can be found the in the "Source"
+sub directory of the Git Repository. Once the file is open, click "Run" and the
+file will run "get_weather.rkt", "JT_viz.rkt", and "Huy_viz.rkt" files. The REPL
+will show the Visualations that are created based on the JSON data found in the
+JSON sub directory of the Source directory.
