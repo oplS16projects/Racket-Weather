@@ -36,7 +36,7 @@ to retrieve real weather data for several US cities.
 
 ##Favorite Scheme Expressions
 ####Jason Downing
-This code is from a recursive function which goes through and grabs weather data
+This code is from a recursive procedure which goes through and grabs weather data
 for five cities. The code is pretty cool because I use [net/url](https://docs.racket-lang.org/net/url.html)
 to grab the data off of the [OpenWeatherMap API](http://openweathermap.org/api), and I also
 use [2htdp/batch-io](https://docs.racket-lang.org/teachpack/2htdpbatch-io.html) to store the JSON
@@ -79,7 +79,7 @@ This is basically using the plot library and the "plot" procedure. What is inter
 ```
 
 ###JT Shepple
-This section of code is used for iterating through the list of weather conditions in the array and deciding which photo to print out accordingly. I first tried printing the image using the bitmap/file function but unfortunately it kept printing out a new line so I had to find a new way. After trying a few functions I found the print function was able to print the image exactly how I wanted to. I thought this was interesting because using a few other functions, they each printed out the new line but the print funtion has more options. For this chunk of code, it recursively goes through the cond_list which is a list of the weather conditions for each of the next 10 days. It first checks for reaching the end of the the list and would print a new line, otherwise it goes through the cond function. The cond function checks the string to see if the weather condition string is either "Clear", "Clouds", "Rain", and "Snow" and prints out the image accordingly. The else statement is there incase the weather condition it found isn't one of the images we have. 
+This section of code is used for iterating through the list of weather conditions in the array and deciding which photo to print out accordingly. I first tried printing the image using the bitmap/file procedure but unfortunately it kept printing out a new line so I had to find a new way. After trying a few procedures I found the print procedure was able to print the image exactly how I wanted to. I thought this was interesting because using a few other procedures, they each printed out the new line but the print funtion has more options. For this chunk of code, it recursively goes through the cond_list which is a list of the weather conditions for each of the next 10 days. It first checks for reaching the end of the the list and would print a new line, otherwise it goes through the cond expression. The cond expression checks the string to see if the weather condition string is either "Clear", "Clouds", "Rain", and "Snow" and prints out the image accordingly. The else statement is there incase the weather condition it found isn't one of the images we have. 
 
 
 ```scheme
@@ -92,7 +92,7 @@ This section of code is used for iterating through the list of weather condition
       (printf "\n")     ;If it is end of the list, print a new line
       ;; Display the cond
       (begin
-        (cond           ;cond function looking for the string of the weather condition
+        (cond           ;cond procedure looking for the string of the weather condition
           ;; Clear
           ((equal? "Clear" (car cond_list))
                    (print (bitmap/file "WeatherImages/Sunny.png"))
