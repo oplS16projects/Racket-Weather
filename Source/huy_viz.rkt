@@ -112,7 +112,7 @@
 
               #:x-label "Days"
               #:y-label "Temperature in Fahrenheit"
-              #:width 1400
+              #:width 1580
               #:height 300
               #:title (string-append name-of-city " 10-Day Forecast Graph")))
 ))
