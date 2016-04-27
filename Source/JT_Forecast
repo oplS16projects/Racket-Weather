@@ -5,55 +5,55 @@
 (provide (all-defined-out))
 
 ;; City names
-(define boston-json "JSON/Boston,US.json")
-(define lawrence-json "JSON/Lawrence,US.json")
-(define lowell-json "JSON/Lowell,US.json")
-(define worchester-json "JSON/Worcester,US.json")
-(define manchester-json "JSON/Manchester,US.json")
+(define boston-forecast "JSON/Boston,US.json")
+(define lawrence-forecast "JSON/Lawrence,US.json")
+(define lowell-forecast "JSON/Lowell,US.json")
+(define worchester-forecast "JSON/Worcester,US.json")
+(define manchester-forecast "JSON/Manchester,US.json")
 
 ;; List of city names
-(define list-of-json-files
-  (list boston-json lawrence-json lowell-json worchester-json manchester-json))
+(define forecast-of-json-files
+  (list boston-forecast lawrence-forecast lowell-forecast worchester-forecast manchester-forecast))
 
 ;; Variables defined here
-(define json_file '())
-(define json_string '())
+(define json_file_forecast '())
+(define json_string_forecast '())
 
-(define list-n '())
+(define forecast-n '())
 
 ;; list of min / max temps
-(define list_min '())
-(define list_max '())
+(define forecast_min '())
+(define forecast_max '())
 
 ;; List of conditions
-(define list_cond '())
+(define forecast_cond '())
 
-;; functions defined here.
+;; functions definitions.
 
 ;; Get min temps
-(define (make_min list_temps list_min)
-  (if (null? list_temps)
+(define (make_min_forecast forecast_temps forecast_min)
+  (if (null? forecast_temps)
       ;; Return the list of mins
-      list_min
-      (make_min (cdr list_temps) (cons (hash-ref (hash-ref (car list_temps) 'temp) 'min) list_min))
+      forecast_min
+      (make_min_forecast (cdr forecast_temps) (cons (hash-ref (hash-ref (car forecast_temps) 'temp) 'min) forecast_min))
   )
 )
 
 ;; Get max temps
-(define (make_max list_temps list_max)
-  (if (null? list_temps)
+(define (make_max_forecast forecast_temps forecast_max)
+  (if (null? forecast_temps)
       ;; Return the list of mins
-      list_max
-      (make_max (cdr list_temps) (cons (hash-ref (hash-ref (car list_temps) 'temp) 'max) list_max))
+      forecast_max
+      (make_max_forecast (cdr forecast_temps) (cons (hash-ref (hash-ref (car forecast_temps) 'temp) 'max) forecast_max))
   )
 )
 
 ;; Get conditions
-(define (make_cond list_temps list_cond)
-  (if (null? list_temps)
+(define (make_cond forecast_temps forecast_cond)
+  (if (null? forecast_temps)
       ;; Return the list of cond
-      list_cond
-      (make_cond (cdr list_temps) (cons (hash-ref (car (hash-ref (car list_temps) 'weather)) 'main) list_cond))
+      forecast_cond
+      (make_cond (cdr forecast_temps) (cons (hash-ref (car (hash-ref (car forecast_temps) 'weather)) 'main) forecast_cond))
   )
 )
 
@@ -62,7 +62,7 @@
   (if (null? min_list)
       ;; End of list
       (printf "\n")
-      
+
       ;; Display the min then the max, and then loop through the lists.
       (begin
          (printf "~a | ~a\t" (car min_list) (car max_list))
@@ -73,22 +73,37 @@
 
 ;; Print the current citie's weather
 (define (print_weather2 cond_list)
+  (printf "  ")
+
   (if (null? cond_list)
       ;; End of list
       (printf "\n")
       ;; Display the cond
       (begin
         (cond
-          ((equal? "Rain" (car cond_list))
-           (bitmap/file "WeatherImages/Rain.png"))
+          ;; Clear
           ((equal? "Clear" (car cond_list))
-           (bitmap/file "WeatherImages/Sunny.png"))
-          (else (printf "error didn't work.\n"))
-          )
-        ;(print_weather2 (rest cond_list))
+                   (print (bitmap/file "WeatherImages/Sunny.png"))
+                   (printf "\t"))
+          ;; Clouds
+          ((equal? "Clouds" (car cond_list))
+                   (print (bitmap/file "WeatherImages/Clouds.png"))
+                   (printf "\t"))
+          ;; Rain
+          ((equal? "Rain" (car cond_list))
+                   (print (bitmap/file "WeatherImages/Rain.png"))
+                   (printf "\t"))
+          ;; Snow
+          ((equal? "Snow" (car cond_list))
+                   (print (bitmap/file "WeatherImages/Snow.png"))
+                   (printf "\t"))
+          (else (printf "Condition not found.\n"))
         )
+        ;(printf "hello\t")
+        (print_weather2 (cdr cond_list))
       )
   )
+)
 
 ;; print out min, max and conditions.
 (define (gen-weather lsts-of-cities name-of-city)
@@ -96,27 +111,27 @@
       '()
       (begin
         ;; Read file in
-        (set! json_file (read-file (car lsts-of-cities)))
-        
+        (set! json_file_forecast (read-file (car lsts-of-cities)))
+
         ;; Parse to string object
-        (set! json_string (string->jsexpr json_file))
-        
+        (set! json_string_forecast (string->jsexpr json_file_forecast))
+
         ;; Get min/max
-        (set! list-n (hash-ref json_string 'list))
+        (set! forecast-n (hash-ref json_string_forecast 'list))
 
         ;; list of min / max temps
-        (set! list_min (make_min list-n '()))
-        (set! list_max (make_max list-n '()))
+        (set! forecast_min (make_min_forecast forecast-n '()))
+        (set! forecast_max (make_max_forecast forecast-n '()))
 
         ;; list of conds
-        (set! list_cond (make_cond list-n '()))
+        (set! forecast_cond (make_cond forecast-n '()))
 
         ;; Display City name
         (printf "~a Weather\n" name-of-city)
-        
+
         ;; Now display everything
-        (print_weather1 list_min list_max)
-        (print_weather2 list_cond)
+        (print_weather1 forecast_min forecast_max)
+        (print_weather2 forecast_cond)
 )))
 
 ;; Generate the list
