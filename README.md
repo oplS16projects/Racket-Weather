@@ -20,7 +20,7 @@ This was our inital concept and visualization of what we wanted to mimic:
 
 This is example output of our final program:
 <p align="center">
-	<img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.PNG">
+	<img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.png">
 <p>
 
 
