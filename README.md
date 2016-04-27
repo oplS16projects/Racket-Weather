@@ -13,19 +13,19 @@ The project is split into several parts. The first part retrieves real weather d
 the second part creates two different visualizations from the retrieved data.
 
 ##Screenshot
-This was our inital concept and visualization of what we wanted to mimic
+This was our inital concept and visualization of what we wanted to mimic:
 <p align="center">
 	<img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Example.png">
 <p>
 
-This is what we actually have outputted
+This is example output of our final program:
 <p align="center">
-	<img src="https://github.com/HuyH0114/Racket-Weather/blob/master/Racket_Weather_Output_Diagram.PNG">
+	<img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.PNG">
 <p>
 
 
 ##Concepts Demonstrated
-* **
+* **File I/O** was used to store the weather data in JSON format. It is also used in both JT and Huy's viz programs.
 * **Recursion** was used to grab the min and max of values from the JSON file
 
 ##External Technology and Libraries
