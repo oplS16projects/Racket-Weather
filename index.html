@@ -3,35 +3,32 @@
   <head>
     <meta charset='utf-8'>
     <meta http-equiv="X-UA-Compatible" content="chrome=1">
-
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    <link href='https://fonts.googleapis.com/css?family=Architects+Daughter' rel='stylesheet' type='text/css'>
     <link rel="stylesheet" type="text/css" href="stylesheets/stylesheet.css" media="screen">
-    <link rel="stylesheet" type="text/css" href="stylesheets/github-dark.css" media="screen">
+    <link rel="stylesheet" type="text/css" href="stylesheets/github-light.css" media="screen">
     <link rel="stylesheet" type="text/css" href="stylesheets/print.css" media="print">
+
+    <!--[if lt IE 9]>
+    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
 
     <title>Racket-weather by oplS16projects</title>
   </head>
 
   <body>
-
     <header>
-      <div class="container">
+      <div class="inner">
         <h1>Racket-weather</h1>
         <h2>Racket Weather, a project using Racket to visualize weather related data</h2>
-
-        <section id="downloads">
-          <a href="https://github.com/oplS16projects/Racket-Weather/zipball/master" class="btn">Download as .zip</a>
-          <a href="https://github.com/oplS16projects/Racket-Weather/tarball/master" class="btn">Download as .tar.gz</a>
-          <a href="https://github.com/oplS16projects/Racket-Weather" class="btn btn-github"><span class="icon"></span>View on GitHub</a>
-        </section>
+        <a href="https://github.com/oplS16projects/Racket-Weather" class="button"><small>View project on</small> GitHub</a>
       </div>
     </header>
 
-    <div class="container">
-      <section id="main_content">
-        <h1>
-<a id="racket-weather-v10" class="anchor" href="#racket-weather-v10" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>RACKET WEATHER V1.0</h1>
-
-<h2>
+    <div id="content-wrapper">
+      <div class="inner clearfix">
+        <section id="main-content">
+          <h2>
 <a id="authors" class="anchor" href="#authors" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Authors</h2>
 
 <p>Jason Downing
@@ -41,29 +38,31 @@ JT Shepple</p>
 <h2>
 <a id="overview" class="anchor" href="#overview" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Overview</h2>
 
-<p>The general idea for our project is to mimic a 10-day weather forcast, where our program displays two type of visualizations.
-One of the visualiazation shows highs and lows with an image of the condition.
-The other viz is a line graph plotting the highs, lows, and average temperature of certain cities.
+<p>The general idea for our project is to mimic a 10-day weather forecast, where our program displays two type of visualizations.
+One of the visualizations show highs and lows with an image of the condition.
+The other visualization is a line graph plotting the highs, lows, and average temperature of certain cities.
 The project is split into several parts. The first part retrieves real weather data into several JSON files and
 the second part creates two different visualizations from the retrieved data.</p>
 
 <h2>
 <a id="screenshot" class="anchor" href="#screenshot" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Screenshot</h2>
 
-<p>This was our inital concept and visualization of what we wanted to mimic:
+<p>This was our initial concept and visualization of what we wanted to mimic:
 <img src="https://raw.githubusercontent.com/oplS16projects/Racket-Weather/master/Example.png" alt="Concept Image"></p>
 
 <p>This is example output of our final program:
-<img src="https://raw.githubusercontent.com/oplS16projects/Racket-Weather/master/Program_Output.png" alt="Program Output"></p>
+<img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.png" alt="Program Output"></p>
 
 <h2>
 <a id="concepts-demonstrated" class="anchor" href="#concepts-demonstrated" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Concepts Demonstrated</h2>
 
 <ul>
 <li>
-<strong>File I/O</strong> was used to store the weather data in JSON format. It is also used in both JT and Huy's viz programs.</li>
+<strong>Data-abstraction</strong> was used with the JSON data, as we used a JSON library called "json" to manage the JSON data that was gathered from an external API.</li>
 <li>
-<strong>Recursion</strong> was used to grab the min and max of values from the JSON file</li>
+<strong>File I/O</strong> was used to store / open files to save and retrieve the JSON data.</li>
+<li>
+<strong>Recursion</strong> was used to grab the min, max and weather condition values from the JSON file, as well as create visualizations and gather the weather data.</li>
 </ul>
 
 <h2>
@@ -88,7 +87,7 @@ to retrieve real weather data for several US cities.</p>
 <h4>
 <a id="jason-downing" class="anchor" href="#jason-downing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Jason Downing</h4>
 
-<p>This code is from a recursive function which goes through and grabs weather data
+<p>This code is from a recursive procedure which goes through and grabs weather data
 for five cities. The code is pretty cool because I use <a href="https://docs.racket-lang.org/net/url.html">net/url</a>
 to grab the data off of the <a href="http://openweathermap.org/api">OpenWeatherMap API</a>, and I also
 use <a href="https://docs.racket-lang.org/teachpack/2htdpbatch-io.html">2htdp/batch-io</a> to store the JSON
@@ -113,7 +112,7 @@ to use in their visualizations.</p>
 <h4>
 <a id="huy-huynh" class="anchor" href="#huy-huynh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Huy Huynh</h4>
 
-<p>This is basically using the plot library and the "plot" procedure. What is interesting about this was that this plot is actually just a list and it uses a mixture of the "lines" and the "points" procedures. Having the plot as a list allowed me to overlap the "lines" and "points" procedures into one display or graph. Each of the these procedure takes in two seperate lists where it has the x and y coordinates needed to plot the diagram. From there the "plot", "lines" and "points" procedure had specific traits that I was able to change such as the label name, color , the x and y labels, the dimenstions of the graph, and its title. This was my favorite because I found it interesting that the procedures in the plot library were not only procedures but also their own objects within those procedures, which were those specific traits that I was able to change. The code itself looks simple but it was interesting to see that there were so much background work that was done. For example for changing the title I was able to use another procedure called string-append and pass it a list and a string I wanted to append. I was able to do all of this inside the "plot" procedure's specific object that it has.</p>
+<p>This is basically using the plot library and the "plot" procedure. What is interesting about this was that this plot is actually just a list and it uses a mixture of the "lines" and the "points" procedures. Having the plot as a list allowed me to overlap the "lines" and "points" procedures into one display or graph. Each of the these procedure takes in two separate lists where it has the x and y coordinates needed to plot the diagram. From there the "plot", "lines" and "points" procedure had specific traits that I was able to change such as the label name, color , the x and y labels, the dimensions of the graph, and its title. This was my favorite because I found it interesting that the procedures in the plot library were not only procedures but also contain their own objects within those procedures, which were those specific traits that I was able to change. The code itself looks simple but it was interesting to see that there were so much background work that was done. For example for changing the title I was able to use another procedure called string-append and pass it a list and a string I wanted to append. I was able to do all of this inside the "plot" procedure's specific object that it has.</p>
 
 <div class="highlight highlight-source-scheme"><pre>      (plot (<span class="pl-c1">list</span> (lines (<span class="pl-c1">map</span> vector  city-x-coord list_max)
                            #:color <span class="pl-c1">'red</span>
@@ -131,30 +130,90 @@ to use in their visualizations.</p>
 <h3>
 <a id="jt-shepple" class="anchor" href="#jt-shepple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JT Shepple</h3>
 
-<p>Magic Viz Expression</p>
+<p>This section of code is used for iterating through the list of weather conditions in the array and deciding which photo to print out accordingly. I first tried printing the image using the bitmap/file procedure but unfortunately it kept printing out a new line so I had to find a new way. After trying a few procedures I found the print procedure was able to print the image exactly how I wanted to. I thought this was interesting because using a few other procedures, they each printed out the new line but the print funtion has more options. For this chunk of code, it recursively goes through the cond_list which is a list of the weather conditions for each of the next 10 days. It first checks for reaching the end of the the list and would print a new line, otherwise it goes through the cond expression. The cond expression checks the string to see if the weather condition string is either "Clear", "Clouds", "Rain", and "Snow" and prints out the image accordingly. The else statement is there incase the weather condition it found isn't one of the images we have. </p>
 
-<pre><code>;; PUT CODE HERE
-</code></pre>
+<div class="highlight highlight-source-scheme"><pre><span class="pl-c">;; Print the current citie's weather</span>
+(<span class="pl-k">define</span> (<span class="pl-en">print_weather2</span><span class="pl-smi"> cond_list</span>)
+  (printf <span class="pl-s"><span class="pl-pds">"</span>  <span class="pl-pds">"</span></span>)   <span class="pl-c">;Used for adding 3 spaces before the first image</span>
+
+  (<span class="pl-k">if</span> (<span class="pl-c1">null?</span> cond_list)
+      <span class="pl-c">;; End of list</span>
+      (printf <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\n</span><span class="pl-pds">"</span></span>)     <span class="pl-c">;If it is end of the list, print a new line</span>
+      <span class="pl-c">;; Display the cond</span>
+      (<span class="pl-k">begin</span>
+        (<span class="pl-k">cond</span>           <span class="pl-c">;cond procedure looking for the string of the weather condition</span>
+          <span class="pl-c">;; Clear</span>
+          ((<span class="pl-c1">equal?</span> <span class="pl-s"><span class="pl-pds">"</span>Clear<span class="pl-pds">"</span></span> (<span class="pl-c1">car</span> cond_list))
+                   (print (bitmap/file <span class="pl-s"><span class="pl-pds">"</span>WeatherImages/Sunny.png<span class="pl-pds">"</span></span>))
+                   (printf <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\t</span><span class="pl-pds">"</span></span>))
+          <span class="pl-c">;; Clouds</span>
+          ((<span class="pl-c1">equal?</span> <span class="pl-s"><span class="pl-pds">"</span>Clouds<span class="pl-pds">"</span></span> (<span class="pl-c1">car</span> cond_list))
+                   (print (bitmap/file <span class="pl-s"><span class="pl-pds">"</span>WeatherImages/Clouds.png<span class="pl-pds">"</span></span>))
+                   (printf <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\t</span><span class="pl-pds">"</span></span>))
+          <span class="pl-c">;; Rain</span>
+          ((<span class="pl-c1">equal?</span> <span class="pl-s"><span class="pl-pds">"</span>Rain<span class="pl-pds">"</span></span> (<span class="pl-c1">car</span> cond_list))
+                   (print (bitmap/file <span class="pl-s"><span class="pl-pds">"</span>WeatherImages/Rain.png<span class="pl-pds">"</span></span>))
+                   (printf <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\t</span><span class="pl-pds">"</span></span>))
+          <span class="pl-c">;; Snow</span>
+          ((<span class="pl-c1">equal?</span> <span class="pl-s"><span class="pl-pds">"</span>Snow<span class="pl-pds">"</span></span> (<span class="pl-c1">car</span> cond_list))
+                   (print (bitmap/file <span class="pl-s"><span class="pl-pds">"</span>WeatherImages/Snow.png<span class="pl-pds">"</span></span>))
+                   (printf <span class="pl-s"><span class="pl-pds">"</span><span class="pl-cce">\t</span><span class="pl-pds">"</span></span>))
+          (<span class="pl-k">else</span> (printf <span class="pl-s"><span class="pl-pds">"</span>Condition not found.<span class="pl-cce">\n</span><span class="pl-pds">"</span></span>))
+        )
+
+        (print_weather2 (<span class="pl-c1">cdr</span> cond_list))
+      )
+  )
+)
+</pre></div>
 
 <h2>
 <a id="additional-remarks" class="anchor" href="#additional-remarks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional Remarks</h2>
 
-<p>This project is pretty cool and you should try it out! ツ</p>
+<p>This project is pretty cool and you should try it out! ツ
+We initially wanted to have one visualization with a map with pins on each of the 5 cities and have the temperature display next to those pins. However, we scratched that idea as a whole and went with imitating a 10-day forecast display that <a href="https://www.wunderground.com">https://www.wunderground.com</a> has on their site. We also displayed an example of what wunderground has for their 10-day forecast above. In addition, we were also able to have a driver program called racker_weather.rkt where it pulls in data from each of our racket files (similar to header and source files in C). From there the program was able to run all three of our individual programs and display the output that was shown above.</p>
 
 <h1>
 <a id="how-to-download-and-run" class="anchor" href="#how-to-download-and-run" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Download and Run</h1>
 
-<p>Download the zip, or git clone the repository from the following link:
-<a href="https://github.com/oplS16projects/Racket-Weather">Racket Weather</a></p>
+<p>Download the <a href="https://github.com/oplS16projects/Racket-Weather/zipball/master">latest zip</a>,
+<a href="https://github.com/oplS16projects/Racket-Weather/tarball/master">latest tarball</a>,
+or git clone the repository from the following link:
+<a href="https://github.com/oplS16projects/Racket-Weather.git">Racket Weather</a></p>
 
 <p>To run, open "racket_weather.rkt" in DrRacket. It can be found the in the "Source"
 sub directory of the Git Repository. Once the file is open, click "Run" and the
 file will run "get_weather.rkt", "JT_viz.rkt", and "Huy_viz.rkt" files. The REPL
-will show the Visualations that are created based on the JSON data found in the
+will show the Visualizations that are created based on the JSON data found in the
 JSON sub directory of the Source directory.</p>
-      </section>
+
+<p>Note: you will need the five libraries listed in the "External Technology and Libraries"
+installed. The latest version of <a href="https://download.racket-lang.org/">Racket / DrRacket</a> is
+also highly recommended, specifically version 6.4 as that is what our team tested our code with.</p>
+
+<p>These libraries should be installed by default in the latest version of Racket (6.4), but
+if you run into any issues running the code, please manually install the libraries listed.
+net/url and json are both in the base package of Racket, but Plot, 2htdp/batch-io, and
+2htdp/image are not and may need to be manually installed.</p>
+        </section>
+
+        <aside id="sidebar">
+          <a href="https://github.com/oplS16projects/Racket-Weather/zipball/master" class="button">
+            <small>Download</small>
+            .zip file
+          </a>
+          <a href="https://github.com/oplS16projects/Racket-Weather/tarball/master" class="button">
+            <small>Download</small>
+            .tar.gz file
+          </a>
+
+          <p class="repo-owner"><a href="https://github.com/oplS16projects/Racket-Weather"></a> is maintained by <a href="https://github.com/oplS16projects">oplS16projects</a>.</p>
+
+          <p>This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the Architect theme by <a href="https://twitter.com/jasonlong">Jason Long</a>.</p>
+        </aside>
+      </div>
     </div>
 
-    
+  
   </body>
 </html>
