@@ -1,5 +1,4 @@
 #lang racket
-(require plot)
 (require (file "get_weather.rkt"))
 (require (file "huy_viz.rkt"))
 (require (file "JT_viz.rkt"))
