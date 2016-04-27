@@ -121,7 +121,7 @@ This section of code is used for iterating through the list of weather condition
 
 ##Additional Remarks
 This project is pretty cool and you should try it out! ツ
-We initially wanted to have one visualization be a map with pins on each of the 5 cities and have the temperature display next to those pins. However we scratched that idea as a whole and went with imitating a 10-day forecast display that https://www.wunderground.com has on their site. We also displayed an example of what wunderground has for their 10-day forecast above. In addition, we were also able to have a driver program called racker_weather.rkt where it pulls in data from each of our racket files (similar to header and source files in C). From there the program was able to run all three of our individual programs and display the output that was shown above.
+We initially wanted to have one visualization with a map with pins on each of the 5 cities and have the temperature display next to those pins. However, we scratched that idea as a whole and went with imitating a 10-day forecast display that https://www.wunderground.com has on their site. We also displayed an example of what wunderground has for their 10-day forecast above. In addition, we were also able to have a driver program called racker_weather.rkt where it pulls in data from each of our racket files (similar to header and source files in C). From there the program was able to run all three of our individual programs and display the output that was shown above.
 
 #How to Download and Run
 Download the [latest zip](https://github.com/oplS16projects/Racket-Weather/zipball/master),
