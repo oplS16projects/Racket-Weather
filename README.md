@@ -88,6 +88,7 @@ Magic Viz Expression
 
 ##Additional Remarks
 This project is pretty cool and you should try it out! ツ
+We initally wanted to have one visualization be a map with pins on each of the 5 cities and have the temperature display next to those pins. However we scratched that idea as a whole and went with imitating a 10-day forcast display that https://www.wunderground.com has on their site. We also displayed an example of what wunderground has for their 10-day forecast above. In addition, we were also able to have a driver program called racker_weather.rkt where it pulls in data from each of our racket files (similar to header and source files in C). From there the program was able to run all three of our individual programs and display the output that was shown above.
 
 #How to Download and Run
 Download the zip, or git clone the repository from the following link:
