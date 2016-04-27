@@ -1,26 +1,32 @@
-# FP7-webpage Title of Project
-This is a template for using your repo's README.md as your project web page. 
-I recommend you copy and paste into your README file. Delete this line and the one above it, customize everything else. Make it look good!
+
 
 ##Authors
-Person One
-
-Person Two
+Jason Downing 
+Huy Huynh
+JT Shepple
 
 ##Overview
-A brief description of the project is given here.  The description is 1 to 3 sentences long.  Be concise and clear.
+Our general idea for the project is to mimic a 10-day weather forcast where it displays two type of visualizations, one of the visualiazation is showing highs and lows with an image of the condition. The other is a line graph plotting the highs lows, and average temperature of a certain city. The project is split into several parts, first was to retrieve real data into a JSON file and the second part was to create two different visualizations from the retrieved data.
 
 ##Screenshot
-(insert a screenshot here. You may opt to get rid of the title for it. You need at least one screenshot. Make it actually appear here, don't just add a link.)
+This was our inital concept and visualization of what we wanted to mimic
+<p align="center">
+	<img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Example.png">
+<p>
 
-Here's a demonstration of how to display an image that's uploaded to this repo:
-![screenshot showing env diagram](withdraw.png)
+This is what we actually have outputted 
+<p align="center">
+	<img src="https://github.com/HuyH0114/Racket-Weather/blob/master/Racket_Weather_Output_Diagram.PNG">
+<p>
+
 
 ##Concepts Demonstrated
 Identify the OPL concepts demonstrated in your project. Be brief. A simple list and example is sufficient. 
 * **Data abstraction** is used to provide access to the elements of the RSS feed.
 * The objects in the OpenGL world are represented with **recursive data structures.**
 * **Symbolic language processing techniques** are used in the parser.
+* 
+ **Basic Recursion** was used to grab the min and max of values from the JSON file
 
 ##External Technology and Libraries
 Briefly describe the existing technology you utilized, and how you used it. Provide a link to that technology(ies).
