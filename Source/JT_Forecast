@@ -1,0 +1,127 @@
+#lang racket
+(require json 2htdp/batch-io 2htdp/image)
+
+;; This will make it possible to import this file into the Racket Weather driver program.
+(provide (all-defined-out))
+
+;; City names
+(define boston-json "JSON/Boston,US.json")
+(define lawrence-json "JSON/Lawrence,US.json")
+(define lowell-json "JSON/Lowell,US.json")
+(define worchester-json "JSON/Worcester,US.json")
+(define manchester-json "JSON/Manchester,US.json")
+
+;; List of city names
+(define list-of-json-files
+  (list boston-json lawrence-json lowell-json worchester-json manchester-json))
+
+;; Variables defined here
+(define json_file '())
+(define json_string '())
+
+(define list-n '())
+
+;; list of min / max temps
+(define list_min '())
+(define list_max '())
+
+;; List of conditions
+(define list_cond '())
+
+;; functions defined here.
+
+;; Get min temps
+(define (make_min list_temps list_min)
+  (if (null? list_temps)
+      ;; Return the list of mins
+      list_min
+      (make_min (cdr list_temps) (cons (hash-ref (hash-ref (car list_temps) 'temp) 'min) list_min))
+  )
+)
+
+;; Get max temps
+(define (make_max list_temps list_max)
+  (if (null? list_temps)
+      ;; Return the list of mins
+      list_max
+      (make_max (cdr list_temps) (cons (hash-ref (hash-ref (car list_temps) 'temp) 'max) list_max))
+  )
+)
+
+;; Get conditions
+(define (make_cond list_temps list_cond)
+  (if (null? list_temps)
+      ;; Return the list of cond
+      list_cond
+      (make_cond (cdr list_temps) (cons (hash-ref (car (hash-ref (car list_temps) 'weather)) 'main) list_cond))
+  )
+)
+
+;; Print the current citie's weather
+(define (print_weather1 min_list max_list)
+  (if (null? min_list)
+      ;; End of list
+      (printf "\n")
+      
+      ;; Display the min then the max, and then loop through the lists.
+      (begin
+         (printf "~a | ~a\t" (car min_list) (car max_list))
+         (print_weather1 (cdr min_list) (cdr max_list))
+      )
+  )
+)
+
+;; Print the current citie's weather
+(define (print_weather2 cond_list)
+  (if (null? cond_list)
+      ;; End of list
+      (printf "\n")
+      ;; Display the cond
+      (begin
+        (cond
+          ((equal? "Rain" (car cond_list))
+           (bitmap/file "WeatherImages/Rain.png"))
+          ((equal? "Clear" (car cond_list))
+           (bitmap/file "WeatherImages/Sunny.png"))
+          (else (printf "error didn't work.\n"))
+          )
+        ;(print_weather2 (rest cond_list))
+        )
+      )
+  )
+
+;; print out min, max and conditions.
+(define (gen-weather lsts-of-cities name-of-city)
+  (if (empty? lsts-of-cities)
+      '()
+      (begin
+        ;; Read file in
+        (set! json_file (read-file (car lsts-of-cities)))
+        
+        ;; Parse to string object
+        (set! json_string (string->jsexpr json_file))
+        
+        ;; Get min/max
+        (set! list-n (hash-ref json_string 'list))
+
+        ;; list of min / max temps
+        (set! list_min (make_min list-n '()))
+        (set! list_max (make_max list-n '()))
+
+        ;; list of conds
+        (set! list_cond (make_cond list-n '()))
+
+        ;; Display City name
+        (printf "~a Weather\n" name-of-city)
+        
+        ;; Now display everything
+        (print_weather1 list_min list_max)
+        (print_weather2 list_cond)
+)))
+
+;; Generate the list
+(gen-weather list-of-json-files "Boston")                ;; Boston
+(gen-weather (cdr list-of-json-files) "Lawrence")        ;; Lawrence
+(gen-weather (cddr list-of-json-files) "Lowell")         ;; Lowell
+(gen-weather (cdddr list-of-json-files) "Worcester")     ;; Worcester
+(gen-weather (cddddr list-of-json-files) "Manchester")   ;; Manchester
