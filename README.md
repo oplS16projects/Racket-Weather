@@ -1,5 +1,3 @@
-#RACKET WEATHER V1.0
-
 ##Authors
 Jason Downing
 Huy Huynh
@@ -20,8 +18,9 @@ This is example output of our final program:
 ![Program Output](https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.png)
 
 ##Concepts Demonstrated
-* **File I/O** was used to store the weather data in JSON format. It is also used in both JT and Huy's viz programs.
-* **Recursion** was used to grab the min and max of values from the JSON file
+* **File I/O** was used to store / open files to save and retrieve the JSON data.
+* **Data-abstraction** was used with the JSON data, as we used a JSON library called "json" to manage the JSON data that was gathered from an external API.
+* **Recursion** was used to grab the min and max of values from the JSON file, as well as create visualizations and gather the weather data.
 
 ##External Technology and Libraries
 Racket Libraries that we used include the following:
@@ -90,11 +89,22 @@ Magic Viz Expression
 This project is pretty cool and you should try it out! ツ
 
 #How to Download and Run
-Download the zip, or git clone the repository from the following link:
-[Racket Weather](https://github.com/oplS16projects/Racket-Weather)
+Download the [latest zip](https://github.com/oplS16projects/Racket-Weather/zipball/master),
+[latest tarball](https://github.com/oplS16projects/Racket-Weather/tarball/master),
+or git clone the repository from the following link:
+[Racket Weather](https://github.com/oplS16projects/Racket-Weather.git)
 
 To run, open "racket_weather.rkt" in DrRacket. It can be found the in the "Source"
 sub directory of the Git Repository. Once the file is open, click "Run" and the
 file will run "get_weather.rkt", "JT_viz.rkt", and "Huy_viz.rkt" files. The REPL
 will show the Visualations that are created based on the JSON data found in the
 JSON sub directory of the Source directory.
+
+Note: you will need the five libraries listed in the "External Technology and Libraries"
+installed. The latest version of [Racket / DrRacket](https://download.racket-lang.org/) is
+also highly recommended, specifically version 6.4 as that is what our team tested our code with.
+
+These libraries should be installed by default in the latest version of Racket (6.4), but
+if you run into any issues running the code, please manually install the libraries listed.
+net/url and json are both in the base package of Racket, but Plot, 2htdp/batch-io, and
+2htdp/image are not and may need to be manually installed.
