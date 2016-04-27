@@ -68,13 +68,13 @@
       (begin
         ;; Read file in
         (set! json_file (read-file (car lsts-of-cities)))
-        
+
         ;; Parse to string object
         (set! json_string (string->jsexpr json_file))
-        
+
         ;; Output JSON string
         ;(display json_string)
-        
+
         ;; Get min/max
         (set! list-n (hash-ref json_string 'list))
         (set! temp (hash-ref (car list-n) 'temp))
@@ -84,15 +84,15 @@
         (set! list_max (make_max list-n '()))
 
         ;; list of avg temps
-        (set! list_avg (make_avg list_max list_min '()))      
-        
+        (set! list_avg (make_avg list_max list_min '()))
+
         (plot (list (lines (map vector  city-x-coord list_max)
                            #:color 'red
                            #:label "High"
                            )
                     (points (map vector  city-x-coord  list_max)
                             #:color 'red
-                            
+
                             )
                     (lines (map vector city-x-coord list_min)
                            #:color 'blue
@@ -100,7 +100,7 @@
                            )
                     (points (map vector city-x-coord list_min)
                             #:color 'blue
-                            
+
                             )
                     (lines (map vector city-x-coord list_avg)
                            #:color 'black
@@ -109,7 +109,7 @@
                     (points (map vector city-x-coord list_avg)
                             #:color 'black
                             ))
-              
+
               #:x-label "Days"
               #:y-label "Temperature in Fahrenheit"
               #:width 1400
