@@ -57,7 +57,7 @@ the second part creates two different visualizations from the retrieved data.</p
 
 <p>This is example output of our final program:
 </p><p align="center">
-    <img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.PNG">
+    <img src="https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.png">
 </p><p></p>
 
 <h2>
@@ -83,7 +83,7 @@ the second part creates two different visualizations from the retrieved data.</p
 <li><a href="https://docs.racket-lang.org/teachpack/2htdpimage.html">2htdp/image</a></li>
 </ol>
 
-<p>We also used one external API, <a href="http://openweathermap.org/api">the OpenWeatherMap API</a>,
+<p>We also used one external API, the <a href="http://openweathermap.org/api">OpenWeatherMap API</a>,
 to retrieve real weather data for several US cities.</p>
 
 <h2>
@@ -92,18 +92,45 @@ to retrieve real weather data for several US cities.</p>
 <h4>
 <a id="jason-downing" class="anchor" href="#jason-downing" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Jason Downing</h4>
 
-<p>Weather Expression</p>
+<p>This code is from a recursive function which goes through and grabs weather data
+for five cities. The code is pretty cool because I use <a href="https://docs.racket-lang.org/net/url.html">net/url</a>
+to grab the data off of the <a href="http://openweathermap.org/api">OpenWeatherMap API</a>, and I also
+use <a href="https://docs.racket-lang.org/teachpack/2htdpbatch-io.html">2htdp/batch-io</a> to store the JSON
+data into multiple files with the cities name as the file name. This small chunk of code basically
+makes our entire project possible because without the JSON files that this code generates Huy and JT would have no data
+to use in their visualizations.</p>
 
-<pre><code>;; Stuff
-</code></pre>
+<div class="highlight highlight-source-scheme"><pre>      <span class="pl-c">;; False case, get JSON data</span>
+      (<span class="pl-k">begin</span>
+        (<span class="pl-k">set!</span> weather_data (string-&gt;url (<span class="pl-c1">car</span> _api-strings)))
+        (<span class="pl-k">set!</span> get_data (get-pure-port weather_data))
+        (<span class="pl-k">set!</span> weather_response (port-&gt;string get_data))
+        (<span class="pl-c1">close-input-port</span> get_data)
+
+        <span class="pl-c">;; Write to file in folder "JSON", with name as "CITY_NAME_HERE.json"</span>
+        (write-file (string-append <span class="pl-s"><span class="pl-pds">"</span>JSON/<span class="pl-pds">"</span></span> (<span class="pl-c1">car</span> _cities)  <span class="pl-s"><span class="pl-pds">"</span>.json<span class="pl-pds">"</span></span>) weather_response)
+
+        <span class="pl-c">;; Recursive call</span>
+        (get_weather (<span class="pl-c1">cdr</span> _cities) (<span class="pl-c1">cdr</span> _api-strings))
+      )</pre></div>
 
 <h4>
 <a id="huy-huynh" class="anchor" href="#huy-huynh" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Huy Huynh</h4>
 
-<p>Magic Viz Expression</p>
+<p>This is basically using the plot library and the "plot" procedure. What is interesting about this was that this plot is actually just a list and it uses a mixture of the "lines" and the "points" procedures. Having the plot as a list allowed me to overlap the "lines" and "points" procedures into one display or graph. Each of the these procedure takes in two seperate lists where it has the x and y coordinates needed to plot the diagram. From there the "plot", "lines" and "points" procedure had specific traits that I was able to change such as the label name, color , the x and y labels, the dimenstions of the graph, and its title. This was my favorite because I found it interesting that the procedures in the plot library were not only procedures but also their own objects within those procedures, which were those specific traits that I was able to change. The code itself looks simple but it was interesting to see that there were so much background work that was done. For example for changing the title I was able to use another procedure called string-append and pass it a list and a string I wanted to append. I was able to do all of this inside the "plot" procedure's specific object that it has.</p>
 
-<pre><code>;; PUT CODE HERE
-</code></pre>
+<div class="highlight highlight-source-scheme"><pre>      (plot (<span class="pl-c1">list</span> (lines (<span class="pl-c1">map</span> vector  city-x-coord list_max)
+                           #:color <span class="pl-c1">'red</span>
+                           #:label <span class="pl-s"><span class="pl-pds">"</span>High<span class="pl-pds">"</span></span>
+                           )
+                    (points (<span class="pl-c1">map</span> vector  city-x-coord  list_max)
+                            #:color <span class="pl-c1">'red</span>
+                            ))
+              #:x-label <span class="pl-s"><span class="pl-pds">"</span>Days<span class="pl-pds">"</span></span>
+              #:y-label <span class="pl-s"><span class="pl-pds">"</span>Temperature in Fahrenheit<span class="pl-pds">"</span></span>
+              #:width <span class="pl-c1">1250</span>
+              #:height <span class="pl-c1">300</span>
+              #:title (string-append name-of-city <span class="pl-s"><span class="pl-pds">"</span> 10-Day Forecast Graph<span class="pl-pds">"</span></span>))</pre></div>
 
 <h3>
 <a id="jt-shepple" class="anchor" href="#jt-shepple" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>JT Shepple</h3>
@@ -116,7 +143,7 @@ to retrieve real weather data for several US cities.</p>
 <h2>
 <a id="additional-remarks" class="anchor" href="#additional-remarks" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>Additional Remarks</h2>
 
-<p>This project is cool.</p>
+<p>This project is pretty cool and you should try it out! ツ</p>
 
 <h1>
 <a id="how-to-download-and-run" class="anchor" href="#how-to-download-and-run" aria-hidden="true"><span aria-hidden="true" class="octicon octicon-link"></span></a>How to Download and Run</h1>
