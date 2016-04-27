@@ -111,14 +111,13 @@ This section of code is used for iterating through the list of weather condition
                    (printf "\t"))
           (else (printf "Condition not found.\n"))
         )
-        
+
         (print_weather2 (cdr cond_list))
       )
   )
 )
 
 ```
-
 
 ##Additional Remarks
 This project is pretty cool and you should try it out! ツ
