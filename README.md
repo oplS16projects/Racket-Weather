@@ -5,8 +5,8 @@ JT Shepple
 
 ##Overview
 The general idea for our project is to mimic a 10-day weather forecast, where our program displays two type of visualizations.
-One of the visualization shows highs and lows with an image of the condition.
-The other viz is a line graph plotting the highs, lows, and average temperature of certain cities.
+One of the visualizations show highs and lows with an image of the condition.
+The other visualization is a line graph plotting the highs, lows, and average temperature of certain cities.
 The project is split into several parts. The first part retrieves real weather data into several JSON files and
 the second part creates two different visualizations from the retrieved data.
 
@@ -20,7 +20,7 @@ This is example output of our final program:
 ##Concepts Demonstrated
 * **Data-abstraction** was used with the JSON data, as we used a JSON library called "json" to manage the JSON data that was gathered from an external API.
 * **File I/O** was used to store / open files to save and retrieve the JSON data.
-* **Recursion** was used to grab the min and max of values from the JSON file, as well as create visualizations and gather the weather data.
+* **Recursion** was used to grab the min, max and weather condition values from the JSON file, as well as create visualizations and gather the weather data.
 
 ##External Technology and Libraries
 Racket Libraries that we used include the following:
