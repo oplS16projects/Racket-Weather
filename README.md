@@ -14,10 +14,12 @@ the second part creates two different visualizations from the retrieved data.
 
 ##Screenshot
 This was our inital concept and visualization of what we wanted to mimic:
-![Alt text]("https://github.com/oplS16projects/Racket-Weather/blob/master/Example.png" "Concept Image")
+
+![Alt text](https://github.com/oplS16projects/Racket-Weather/blob/master/Example.png "Concept Image")
 
 This is example output of our final program:
-![Alt text]("https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.png" "Concept Image")
+
+![Alt text](https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.png "Concept Image")
 
 ##Concepts Demonstrated
 * **File I/O** was used to store the weather data in JSON format. It is also used in both JT and Huy's viz programs.
