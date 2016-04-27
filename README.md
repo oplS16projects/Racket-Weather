@@ -15,7 +15,7 @@ This was our initial concept and visualization of what we wanted to mimic:
 ![Concept Image](https://raw.githubusercontent.com/oplS16projects/Racket-Weather/master/Example.png)
 
 This is example output of our final program:
-![Program Output](https://github.com/oplS16projects/Racket-Weather/blob/master/Program_Output.png)
+![Program Output](https://raw.githubusercontent.com/oplS16projects/Racket-Weather/master/Program_Output.png)
 
 ##Concepts Demonstrated
 * **Data-abstraction** was used with the JSON data, as we used a JSON library called "json" to manage the JSON data that was gathered from an external API.
