@@ -79,14 +79,50 @@ This is basically using the plot library and the "plot" procedure. What is inter
 ```
 
 ###JT Shepple
-Magic Viz Expression
+This section of code is used for iterating through the list of weather conditions in the array and deciding which photo to print out accordingly. I first tried printing the image using the bitmap/file function but unfortunately it kept printing out a new line so I had to find a new way. After trying a few functions I found the print function was able to print the image exactly how I wanted to. I thought this was interesting because using a few other functions I used each printed out the new line but print has more options. Going through this code, it recursively goes through the cond_list which is a list of the weather conditions for each of the next 10 days. It first checks for reaching the end of the the list and would print a new line, otherwise it goes through the cond function. The cond function checks the string to see if the weather condition string is either "Clear", "Clouds", "Rain", and "Snow" and prints out the image accordingly.
+
+
+```scheme
+;; Print the current citie's weather
+(define (print_weather2 cond_list)
+  (printf "  ")   ;Used for adding 3 spaces before the first image
+
+  (if (null? cond_list)
+      ;; End of list
+      (printf "\n")     ;If it is end of the list, print a new line
+      ;; Display the cond
+      (begin
+        (cond           ;cond function looking for the string of the weather condition
+          ;; Clear
+          ((equal? "Clear" (car cond_list))
+                   (print (bitmap/file "WeatherImages/Sunny.png"))
+                   (printf "\t"))
+          ;; Clouds
+          ((equal? "Clouds" (car cond_list))
+                   (print (bitmap/file "WeatherImages/Clouds.png"))
+                   (printf "\t"))
+          ;; Rain
+          ((equal? "Rain" (car cond_list))
+                   (print (bitmap/file "WeatherImages/Rain.png"))
+                   (printf "\t"))
+          ;; Snow
+          ((equal? "Snow" (car cond_list))
+                   (print (bitmap/file "WeatherImages/Snow.png"))
+                   (printf "\t"))
+          (else (printf "Condition not found.\n"))
+        )
+        
+        (print_weather2 (cdr cond_list))
+      )
+  )
+)
 
 ```
-;; PUT CODE HERE
-```
+
 
 ##Additional Remarks
 This project is pretty cool and you should try it out! ツ
+We initally wanted to have one visualization be a map with pins on each of the 5 cities and have the temperature display next to those pins. However we scratched that idea as a whole and went with imitating a 10-day forcast display that https://www.wunderground.com has on their site. We also displayed an example of what wunderground has for their 10-day forecast above. In addition, we were also able to have a driver program called racker_weather.rkt where it pulls in data from each of our racket files (similar to header and source files in C). From there the program was able to run all three of our individual programs and display the output that was shown above.
 
 #How to Download and Run
 Download the [latest zip](https://github.com/oplS16projects/Racket-Weather/zipball/master),
