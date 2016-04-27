@@ -67,10 +67,7 @@ to use in their visualizations.
 ```
 
 ####Huy Huynh
-This is basically using the plot library and the plot procedure. What is interesting about this was that this plot is actually
-just a list and it uses a mixture of the "lines" procedure and the "points" procedure. Having the plot as a list allowed me to
-overlap the "lines" and "points" procedure into one display or graph. Each of the these procedure takes in two seperate lists where it
-has the x and y coordinates needed to plot the diagram. From there the "plot", "lines" and "points" procedure had specific traits that I was able to change such as the label name, color , the x and y labels, the dimenstions of the graph, and its title. This was my favorite because I found it interesting that the procedures in the plot library were not only procedures but also their own objects within those procedures, which were those specific traits that I was able to change. The code itself looks simple but it was interesting to see that there were so much background work that was done. For example for changing the title I was able to use another procedure called string-append and pass it a list and a string I wanted to append. I was able to do all of this inside the "plot" procedure's specific object that it has.
+This is basically using the plot library and the "plot" procedure. What is interesting about this was that this plot is actually just a list and it uses a mixture of the "lines" and the "points" procedures. Having the plot as a list allowed me to overlap the "lines" and "points" procedures into one display or graph. Each of the these procedure takes in two seperate lists where it has the x and y coordinates needed to plot the diagram. From there the "plot", "lines" and "points" procedure had specific traits that I was able to change such as the label name, color , the x and y labels, the dimenstions of the graph, and its title. This was my favorite because I found it interesting that the procedures in the plot library were not only procedures but also their own objects within those procedures, which were those specific traits that I was able to change. The code itself looks simple but it was interesting to see that there were so much background work that was done. For example for changing the title I was able to use another procedure called string-append and pass it a list and a string I wanted to append. I was able to do all of this inside the "plot" procedure's specific object that it has.
 
 ```scheme
       (plot (list (lines (map vector  city-x-coord list_max)
@@ -89,12 +86,13 @@ has the x and y coordinates needed to plot the diagram. From there the "plot", "
 
 ###JT Shepple
 Magic Viz Expression
+
 ```
 ;; PUT CODE HERE
 ```
 
 ##Additional Remarks
-This project is cool.
+This project is pretty cool and you should try it out! ツ
 
 #How to Download and Run
 Download the zip, or git clone the repository from the following link:
