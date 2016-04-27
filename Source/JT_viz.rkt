@@ -48,7 +48,7 @@
   )
 )
 
-;; Get conditions
+;; Get weather conditions
 (define (make_cond forecast_temps forecast_cond)
   (if (null? forecast_temps)
       ;; Return the list of cond
@@ -71,17 +71,18 @@
   )
 )
 
-;; Print the current citie's weather
+;; Print the current city's weather
 (define (print_weather2 cond_list)
   (printf "  ")
 
   (if (null? cond_list)
       ;; End of list
       (printf "\n")
+      
       ;; Display the cond
       (begin
         (cond
-          ;; Clear
+          ;; Clear (Sunny)
           ((equal? "Clear" (car cond_list))
                    (print (bitmap/file "WeatherImages/Sunny.png"))
                    (printf "\t"))
@@ -99,13 +100,13 @@
                    (printf "\t"))
           (else (printf "Condition not found.\n"))
         )
-        ;(printf "hello\t")
+        
         (print_weather2 (cdr cond_list))
       )
   )
 )
 
-;; print out min, max and conditions.
+;; Print out min, max and weather condition image.
 (define (gen-weather lsts-of-cities name-of-city)
   (if (empty? lsts-of-cities)
       '()
@@ -130,8 +131,8 @@
         (printf "~a Weather\n" name-of-city)
 
         ;; Now display everything
-        (print_weather1 forecast_min forecast_max)
-        (print_weather2 forecast_cond)
+        (print_weather1 forecast_min forecast_max) ;print min and then max on same row
+        (print_weather2 forecast_cond) ;print image
 )))
 
 
