@@ -82,6 +82,11 @@
         ;; list of min / max temps
         (set! list_min (make_min list-n '()))
         (set! list_max (make_max list-n '()))
+        
+        ; Reverse all the list so the days are in the correct order
+        ; (today -> tomorrow -> etc)
+        (set! list_min (reverse list_min))
+        (set! list_max (reverse list_max))
 
         ;; list of avg temps
         (set! list_avg (make_avg list_max list_min '()))
