@@ -69,11 +69,11 @@
   )
 )
 
-;; Print the current citie's weather
+;; Print the current city's weather
 (define (print_weather0 forecast_date)
   (define curr_date '())
   (printf "     ")  ;; Move dates over a few spaces.
-  
+
   (if (null? forecast_date)
       ;; End of list
       (printf "\n")
@@ -111,7 +111,7 @@
   (if (null? cond_list)
       ;; End of list
       (printf "\n")
-      
+
       ;; Display the cond
       (begin
         (cond
@@ -133,7 +133,7 @@
                    (printf "\t"))
           (else (printf "Condition not found.\n"))
         )
-        
+
         (print_weather2 (cdr cond_list))
       )
   )
