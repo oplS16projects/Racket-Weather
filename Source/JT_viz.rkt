@@ -28,6 +28,9 @@
 ;; List of conditions
 (define forecast_cond '())
 
+;; List of dates
+(define forecast_dates '())
+
 ;; functions definitions.
 
 ;; Get min temps
@@ -55,6 +58,36 @@
       forecast_cond
       (make_cond (cdr forecast_temps) (cons (hash-ref (car (hash-ref (car forecast_temps) 'weather)) 'main) forecast_cond))
   )
+)
+
+;; Get dates
+(define (make_date forecast_temps forecast_date)
+  (if (null? forecast_temps)
+      ;; Return list of dates
+      forecast_date
+      (make_date (cdr forecast_temps) (cons (hash-ref (car forecast_temps) 'dt) forecast_date))
+  )
+)
+
+;; Print the current citie's weather
+(define (print_weather0 forecast_date)
+  (define curr_date '())
+  (printf "     ")  ;; Move dates over a few spaces.
+  
+  (if (null? forecast_date)
+      ;; End of list
+      (printf "\n")
+
+      ;; Display date in MONTH/DAY format
+      (begin
+        ;; Get the current date timestamp
+        (set! curr_date (seconds->date (car forecast_date)))
+
+        ;; Print month/day
+        (printf "~a/~a\t" (date-month curr_date) (date-day curr_date))
+        (print_weather0 (cdr forecast_date))
+      )
+   )
 )
 
 ;; Print the current citie's weather
@@ -127,10 +160,21 @@
         ;; list of conds
         (set! forecast_cond (make_cond forecast-n '()))
 
+        ;; list of dates
+        (set! forecast_dates (make_date forecast-n '()))
+
+        ;; Reverse all the lists so the days are in the right order
+        ;; (today -> tomorrow -> etc)
+        (set! forecast_min (reverse forecast_min))
+        (set! forecast_max (reverse forecast_max))
+        (set! forecast_cond (reverse forecast_cond))
+        (set! forecast_dates (reverse forecast_dates))
+
         ;; Display City name
         (printf "~a Weather\n" name-of-city)
 
         ;; Now display everything
+        (print_weather0 forecast_dates) ;; Print dates in MONTH/DAY format
         (print_weather1 forecast_min forecast_max) ;print min and then max on same row
         (print_weather2 forecast_cond) ;print image
 )))
