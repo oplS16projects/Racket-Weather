@@ -79,7 +79,7 @@ This is basically using the plot library and the "plot" procedure. What is inter
 ```
 
 ###JT Shepple
-This section of code is used for iterating through the list of weather conditions in the array and deciding which photo to print out accordingly. I first tried printing the image using the bitmap/file procedure but unfortunately it kept printing out a new line so I had to find a new way. After trying a few procedures I found the print procedure was able to print the image exactly how I wanted to. I thought this was interesting because using a few other procedures, they each printed out the new line but the print funtion has more options. For this chunk of code, it recursively goes through the cond_list which is a list of the weather conditions for each of the next 10 days. It first checks for reaching the end of the the list and would print a new line, otherwise it goes through the cond expression. The cond expression checks the string to see if the weather condition string is either "Clear", "Clouds", "Rain", and "Snow" and prints out the image accordingly. The else statement is there incase the weather condition it found isn't one of the images we have. 
+This section of code is used for iterating through the list of weather conditions in the array and deciding which photo to print out accordingly. I first tried printing the image using the bitmap/file procedure but unfortunately it kept printing out a new line so I had to find a new way. After trying a few procedures I found the print procedure was able to print the image exactly how I wanted to. I thought this was interesting because using a few other procedures, they each printed out the new line but the print function has more options. For this chunk of code, it recursively goes through the cond_list which is a list of the weather conditions for each of the next 10 days. It first checks for reaching the end of the the list and would print a new line, otherwise it goes through the cond expression. The cond expression checks the string to see if the weather condition string is either "Clear", "Clouds", "Rain", and "Snow" and prints out the image accordingly. The else statement is there incase the weather condition it found isn't one of the images we have.
 
 
 ```scheme
@@ -121,6 +121,7 @@ This section of code is used for iterating through the list of weather condition
 
 ##Additional Remarks
 This project is pretty cool and you should try it out! ツ
+
 We initially wanted to have one visualization with a map with pins on each of the 5 cities and have the temperature display next to those pins. However, we scratched that idea as a whole and went with imitating a 10-day forecast display that https://www.wunderground.com has on their site. We also displayed an example of what wunderground has for their 10-day forecast above. In addition, we were also able to have a driver program called racker_weather.rkt where it pulls in data from each of our racket files (similar to header and source files in C). From there the program was able to run all three of our individual programs and display the output that was shown above.
 
 #How to Download and Run
@@ -132,7 +133,7 @@ or git clone the repository from the following link:
 To run, open "racket_weather.rkt" in DrRacket. It can be found the in the "Source"
 sub directory of the Git Repository. Once the file is open, click "Run" and the
 file will run "get_weather.rkt", "JT_viz.rkt", and "Huy_viz.rkt" files. The REPL
-will show the Visualizations that are created based on the JSON data found in the
+will show the visualizations that are created based on the JSON data found in the
 JSON sub directory of the Source directory.
 
 Note: you will need the five libraries listed in the "External Technology and Libraries"
@@ -143,3 +144,7 @@ These libraries should be installed by default in the latest version of Racket (
 if you run into any issues running the code, please manually install the libraries listed.
 net/url and json are both in the base package of Racket, but Plot, 2htdp/batch-io, and
 2htdp/image are not and may need to be manually installed.
+
+One final note: we tested our program on a 1080P display. Running the code on a screen
+with a smaller screen resolution may lead to the line graph appearing off the screen;
+that is a side effect of forcing the graph to be 1580 pixels wide.
